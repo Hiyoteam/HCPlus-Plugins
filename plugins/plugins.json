@@ -1,6 +1,5 @@
 {
   "plugins":[
-    "demo_plugin",
-    "nsp"
+    "demo_plugin"
   ]
 }
