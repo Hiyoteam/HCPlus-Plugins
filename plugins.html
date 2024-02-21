@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="For Better Chatting Experience."/>
+    <!-- MDUI CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"/>
+    <title>HC++ Plugins</title>
+  </head>
+  <body class="mdui-theme-layout-auto mdui-theme-accent-blue">
+    <div class="mdui-appbar">
+        <div class="mdui-toolbar mdui-color-theme">
+          <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#menu'}">
+            <i class="mdui-icon material-icons">menu</i>
+          </a>
+          <a href="javascript:;" class="mdui-typo-headline">HC++ Plugins</a>
+          <div class="mdui-toolbar-spacer"></div>
+          <a href="javascript:;" onclick="document.location.reload();" class="mdui-btn mdui-btn-icon">
+            <i class="mdui-icon material-icons">refresh</i>
+          </a>
+        </div>
+      </div>
+    <div class="mdui-drawer mdui-drawer-close" id="menu">
+        <div>
+            <div class="mdui-typo mdui-p-l-2">
+                <h1>HC++ Plugins</h1>
+                <p>Better Chatting Experience.</p>
+                <br>
+            </div>
+            <hr>
+            <ul class="mdui-list">
+                <a href="/">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">Mainpage</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+                    </li>
+                </a>
+                <a href="/plugins.html">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">Plugin List</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
+                    </li>
+                </a>
+                <a href="/readme.html">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">README</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">information</i>
+                    </li>
+                </a>
+              </ul>
+        </div>
+    </div>
+    <div class="mdui-typo mdui-p-l-2">
+        <h1>Plugin List</h1>
+        <p>Here are the plugins you can install.</p>
+        <br>
+        <hr>
+        <div id="plugins-progress">
+            <h4>Fetching Plugins...</h4>
+            <div class="mdui-progress">
+                <div class="mdui-progress-indeterminate"></div>
+            </div>
+        </div>
+    </div>
+    <ul class="mdui-list mdui-p-a-2" id="plugins-list">
+    </ul>
+    
+    <!-- MDUI JavaScript -->
+    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <script>
+        function aHref(url){
+            window.location.href=url;
+        }
+        function getText(e){
+            return e.text()
+        }
+        function processPluginDetails(e){
+            getText(e).then(function(json){
+                let details=JSON.parse(json)
+                let a=document.createElement("a");
+                a.setAttribute("href",`/plugin-detail.html#${details.id}`)
+                let li=document.createElement("li")
+                li.classList.add("mdui-list-item")
+                li.classList.add("mdui-ripple")
+                let content_div=document.createElement("div")
+                content_div.classList.add("mdui-list-item-content")
+                let content_title=document.createElement("div")
+                content_title.classList.add("mdui-list-item-title")
+                content_title.innerText=details.name
+                let content_text=document.createElement("div")
+                content_text.classList.add("mdui-list-item-text")
+                content_text.innerText=details.description
+                content_text.innerHTML+="\n"
+                content_text.innerText+="By "+details.author
+                content_div.appendChild(content_title)
+                content_div.appendChild(content_text)
+                li.appendChild(content_div)
+                a.appendChild(li)
+                document.getElementById("plugins-list").appendChild(a)
+            })
+        }
+        function fetchPluginDetails(name){
+            fetch(`/plugins/${name}/plugin.json`).then(processPluginDetails)
+            .catch(console.warn)
+        }
+        function processPlugins(e){
+            getText(e).then(function(json){
+                let plugins=JSON.parse(json)
+                plugins.plugins.forEach(element => {
+                    // fetch plugin details
+                    fetchPluginDetails(element)
+                });
+                document.getElementById("plugins-progress").style.display="none"
+            })
+        }
+        function fetchPlugins(){
+            fetch("/plugins/plugins.json")
+                .then(processPlugins)
+                .catch(console.warn)
+        }
+        fetchPlugins()
+    </script>
+  </body>
+</html>

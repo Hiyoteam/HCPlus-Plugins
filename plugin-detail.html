@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="For Better Chatting Experience."/>
+    <!-- MDUI CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"/>
+    <title>HC++ Plugins</title>
+  </head>
+  <body class="mdui-theme-layout-auto mdui-theme-accent-blue">
+    <div class="mdui-appbar">
+        <div class="mdui-toolbar mdui-color-theme">
+          <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#menu'}">
+            <i class="mdui-icon material-icons">menu</i>
+          </a>
+          <a href="javascript:;" class="mdui-typo-headline">HC++ Plugins</a>
+          <div class="mdui-toolbar-spacer"></div>
+          <a href="javascript:;" onclick="document.location.reload();" class="mdui-btn mdui-btn-icon">
+            <i class="mdui-icon material-icons">refresh</i>
+          </a>
+        </div>
+      </div>
+    <div class="mdui-drawer mdui-drawer-close" id="menu">
+        <div>
+            <div class="mdui-typo mdui-p-l-2">
+                <h1>HC++ Plugins</h1>
+                <p>Better Chatting Experience.</p>
+                <br>
+            </div>
+            <hr>
+            <ul class="mdui-list">
+                <a href="/">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">Mainpage</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+                    </li>
+                </a>
+                <a href="/plugins.html">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">Plugin List</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
+                    </li>
+                </a>
+                <a href="/readme.html">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">README</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">information</i>
+                    </li>
+                </a>
+              </ul>
+        </div>
+    </div>
+    <div class="mdui-typo mdui-p-l-2">
+        <div id="plugins-progress">
+            <h4>Fetching Plugin Detail...</h4>
+            <div class="mdui-progress">
+                <div class="mdui-progress-indeterminate"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MDUI JavaScript -->
+    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <script>
+        function aHref(url){
+            window.location.href=url;
+        }
+        function getText(e){
+            return e.text()
+        }
+        function updateDistroField() {
+        var select = document.querySelector('.mdui-select');
+        var textfield = document.getElementById('custom-domain');
+        if (select.value == 'custom') {
+            textfield.style.display = 'block';
+        } else {
+            textfield.style.display = 'none';
+        }
+    }
+    function copyToClipboard(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+    }
+    function generateCommand() {
+        var command = "/addplugin "+document.location.protocol + '//' + document.location.host + '/plugins/' + document.location.hash.slice(1) + '/index.js';
+        copyToClipboard(command);
+        mdui.dialog({
+            title: 'Command Copied',
+            content: 'Paste it into your client\'s chat input box and refresh to install the plugin.<br>If you see "Unknown command: /addplugin", please make sure you are using the latest version of HC++.',
+        })
+    }
+    function generateUninstall(){
+        var distro = document.querySelector('.mdui-select').value;
+        if (distro == 'none') {
+            mdui.alert('Please choose a distro.');
+            return;
+        }
+        var domain = document.getElementById('custom-domain').querySelector('input').value;
+        if (distro == 'custom') {
+            distro = domain;
+            // validate domain(not url)
+            if (!/^[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$/.test(distro)) {
+                mdui.alert('Invalid domain. It should like "hach.chat" or "hc.thz.cool", without "https://" or "http://".');
+                return;
+            }
+        }
+        var uninstall_url="https://"+distro+"/rescue-mode.html#remove-plugin?"+encodeURIComponent(document.location.protocol + '//' + document.location.host + '/plugins/' + document.location.hash.slice(1) + '/index.js');
+        mdui.dialog({
+            title: 'Click to uninstall',
+            content: `<div class="mdui-typo">Click <a href="${uninstall_url}" target="_blank">here</a> to uninstall the plugin.<br>If you sees a 404 error, please make sure you are using the latest version of HC++ with rescue mode.</div>`,
+        })
+    }
+        function processPluginDetails(e){
+            getText(e).then(function(json){
+                document.getElementById("plugins-progress").style.display="none"
+                let details=JSON.parse(json)
+                // Create the main container div
+                const mainDiv = document.createElement('div');
+                mainDiv.classList.add('mdui-typo', 'mdui-p-l-2');
+
+                // Create the heading element
+                const heading = document.createElement('h1');
+                heading.textContent = details.name;
+
+                // Create the first paragraph element
+                const descriptionParagraph = document.createElement('p');
+                descriptionParagraph.textContent = details.description;
+
+                // Create the second paragraph element
+                const authorParagraph = document.createElement('p');
+                authorParagraph.textContent = 'By '+details.author;
+
+                // Create the line break element
+                const lineBreak = document.createElement('br');
+
+                // Create the horizontal rule element
+                const hr = document.createElement('hr');
+
+                // Append the heading, paragraphs, line break, and horizontal rule to the main div
+                mainDiv.appendChild(heading);
+                mainDiv.appendChild(descriptionParagraph);
+                mainDiv.appendChild(authorParagraph);
+                mainDiv.appendChild(lineBreak);
+                mainDiv.appendChild(hr);
+
+                // Create the second container div
+                const secondDiv = document.createElement('div');
+                secondDiv.classList.add('mdui-p-a-2', 'mdui-typo');
+
+                // Create the "Would you like to install this plugin?" heading
+                const installHeading = document.createElement('h3');
+                installHeading.textContent = 'Would you like to install this plugin?';
+
+                // Create the button for copying the installation command
+                const installButton = document.createElement('button');
+                installButton.textContent = 'Copy installation command';
+                installButton.classList.add('mdui-btn', 'mdui-btn-raised', 'mdui-ripple', 'mdui-color-theme-accent', 'mdui-p-l-2');
+                installButton.onclick = generateCommand;
+
+                // Create the "Not happy with it? Uninstall then." heading
+                const uninstallHeading = document.createElement('h3');
+                uninstallHeading.textContent = 'Not happy with it? Uninstall then.';
+
+                // Create the select element for choosing a distro
+                const selectElement = document.createElement('select');
+                selectElement.classList.add('mdui-select','mdui-p-l-2');
+                selectElement.onchange = updateDistroField;
+
+                // Create the options for the select element
+                const distroOptions = [
+                { value: 'none', label: '--Choose a distro--', disabled: true, selected: true },
+                { value: 'hach.chat', label: 'hach.chat' },
+                { value: 's1.hach.chat', label: 's1.hach.chat' },
+                { value: 'hc.thz.cool', label: 'hc.thz.cool' },
+                { value: 'hcer.netlify.app', label: 'hcer.netlify.app' },
+                { value: 'custom', label: 'Other' }
+                ];
+
+                // Create and append the option elements to the select element
+                distroOptions.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option.value;
+                optionElement.textContent = option.label;
+                if (option.disabled) optionElement.disabled = true;
+                if (option.selected) optionElement.selected = true;
+                selectElement.appendChild(optionElement);
+                });
+
+                // Create the custom domain text field
+                const customDomainTextField = document.createElement('div');
+                customDomainTextField.classList.add('mdui-textfield', 'mdui-textfield-floating-label', 'mdui-p-l-2');
+                customDomainTextField.id = 'custom-domain';
+                customDomainTextField.style.display = 'none';
+
+                // Create the label for the text field
+                const customDomainLabel = document.createElement('label');
+                customDomainLabel.classList.add('mdui-textfield-label');
+                customDomainLabel.textContent = 'Your distro domain';
+
+                // Create the input for the text field
+                const customDomainInput = document.createElement('input');
+                customDomainInput.classList.add('mdui-textfield-input');
+
+                // Append the label and input to the custom domain text field
+                customDomainTextField.appendChild(customDomainLabel);
+                customDomainTextField.appendChild(customDomainInput);
+                
+                // Create a blank
+                const blankElem = document.createElement("span");
+                blankElem.innerText="   "
+
+                // Create the button for uninstalling
+                const uninstallButton = document.createElement('button');
+                uninstallButton.textContent = 'Uninstall';
+                uninstallButton.classList.add('mdui-btn', 'mdui-btn-raised', 'mdui-ripple', 'mdui-color-theme-accent', 'mdui-m-r-2');
+                uninstallButton.onclick = generateUninstall;
+
+                // Append the heading, select element, custom domain text field, and uninstall button to the second div
+                secondDiv.appendChild(installHeading);
+                secondDiv.appendChild(installButton);
+                secondDiv.appendChild(uninstallHeading);
+                secondDiv.appendChild(selectElement);
+                secondDiv.appendChild(customDomainTextField);
+                secondDiv.appendChild(blankElem);
+                secondDiv.appendChild(uninstallButton);
+
+                // Append the main div and second div to the document body
+                document.body.appendChild(mainDiv);
+                document.body.appendChild(secondDiv);
+            })
+        }
+        function fetchPluginDetails(name){
+            fetch(`/plugins/${name}/plugin.json`).then(processPluginDetails)
+            .catch(console.warn)
+        }
+        function processPlugins(e){
+            getText(e).then(function(json){
+                let plugins=JSON.parse(json)
+                plugins.plugins.forEach(element => {
+                    // fetch plugin details
+                    fetchPluginDetails(element)
+                });
+                document.getElementById("plugins-progress").style.display="none"
+            })
+        }
+        function fetchPlugins(){
+            fetch("/plugins/plugins.json")
+                .then(processPlugins)
+                .catch(console.warn)
+        }
+        function getDetails(){
+            let plugin_id=document.location.hash.slice(1)
+            fetchPluginDetails(plugin_id)
+        }
+        getDetails()
+    </script>
+  </body>
+</html>

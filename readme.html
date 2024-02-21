@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="For Better Chatting Experience."/>
+    <!-- MDUI CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"/>
+    <title>HC++ Plugins</title>
+  </head>
+  <body class="mdui-theme-layout-auto mdui-theme-accent-blue">
+    <div class="mdui-appbar">
+        <div class="mdui-toolbar mdui-color-theme">
+          <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#menu'}">
+            <i class="mdui-icon material-icons">menu</i>
+          </a>
+          <a href="javascript:;" class="mdui-typo-headline">HC++ Plugins</a>
+          <div class="mdui-toolbar-spacer"></div>
+          <a href="javascript:;" onclick="document.location.reload();" class="mdui-btn mdui-btn-icon">
+            <i class="mdui-icon material-icons">refresh</i>
+          </a>
+        </div>
+      </div>
+    <div class="mdui-drawer mdui-drawer-close" id="menu">
+        <div>
+            <div class="mdui-typo mdui-p-l-2">
+                <h1>HC++ Plugins</h1>
+                <p>Better Chatting Experience.</p>
+                <br>
+            </div>
+            <hr>
+            <ul class="mdui-list">
+                <a href="/">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">Mainpage</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+                    </li>
+                </a>
+                <a href="/plugins.html">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">Plugin List</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
+                    </li>
+                </a>
+                <a href="/readme.html">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">README</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">information</i>
+                    </li>
+                </a>
+              </ul>
+        </div>
+    </div>
+    <div class="mdui-typo mdui-p-l-2">
+        <h1>HC++ Plugin Requirements</h1>
+        <p class="mdui-p-l-2">Thank you for developing more features for HC++! But in order for these plugins not to defeat the original purpose of creating our plugin system (to provide a better chat experience), we do have some requirements for the plugins.</p>
+        <div class="mdui-p-l-2">
+            <h3>1. Not a malicious plugin.</h3>
+            <p class="mdui-p-l-2">As stated above, plugins are meant to provide users with a better chat experience, but harmful plugins will undoubtedly not fulfill that condition. It is to avoid harmful plugins that we have created this plugin marketplace with an audit system.</p>
+            <h3>2. Negatively targeted plugins.</h3>
+            <p class="mdui-p-l-2">Negative targeting plugins refer to negative plugins that are created to target someone (e.g. a user who installs this plugin will automatically send spamming messages to someone, etc.), and such plugins do not benefit the community.</p>
+            <h3>3. SFW (Safe-For-Work).</h3>
+            <p class="mdui-p-l-2">We want to maintain a certain level of formality here, so NSFW contents are not allowed.</p>
+            <h3>4. No code obfuscation.</h3>
+            <p class="mdui-p-l-2">To keep the review efficient and accurate, please do not code obfuscate your plugin.</p>
+            <h3>5. No plugins that violates the law.</h3>
+            <p class="mdui-p-l-2">It is illegal to use code that violates the law, and we do not allow such code to be used in our plugin system.</p>
+            <h3>6. Accurate description.</h3>
+            <p class="mdui-p-l-2">Please write an accurate description for your plugin and we will also review the plugin to see if it does this and <b>only</b> this.</p>
+            <h3>7. No plugins that violates the privacy.</h3>
+            <p class="mdui-p-l-2">It is illegal to use code that violates the privacy, and we do not allow such code to be used in our plugin system.</p>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <p>If you are happy to follow the above rules, then feel free to <a href="https://github.com/Hiyoteam/HCPlus-Plugins/pulls">publish your plugin</a>!</p>
+    </div>
+
+    <!-- MDUI JavaScript -->
+    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <script>
+        function aHref(url) {
+            window.location.href=url;
+        }
+    </script>
+  </body>
+</html>

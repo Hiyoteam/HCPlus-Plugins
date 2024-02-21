@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="For Better Chatting Experience."/>
+    <!-- MDUI CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"/>
+    <title>HC++ Plugins</title>
+  </head>
+  <body class="mdui-theme-layout-auto mdui-theme-accent-blue">
+    <div class="mdui-appbar">
+        <div class="mdui-toolbar mdui-color-theme">
+          <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#menu'}">
+            <i class="mdui-icon material-icons">menu</i>
+          </a>
+          <a href="javascript:;" class="mdui-typo-headline">HC++ Plugins</a>
+          <div class="mdui-toolbar-spacer"></div>
+          <a href="javascript:;" onclick="document.location.reload();" class="mdui-btn mdui-btn-icon">
+            <i class="mdui-icon material-icons">refresh</i>
+          </a>
+        </div>
+      </div>
+    <div class="mdui-drawer mdui-drawer-close" id="menu">
+        <div>
+            <div class="mdui-typo mdui-p-l-2">
+                <h1>HC++ Plugins</h1>
+                <p>Better Chatting Experience.</p>
+                <br>
+            </div>
+            <hr>
+            <ul class="mdui-list">
+                <a href="/">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">Mainpage</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+                    </li>
+                </a>
+                <a href="/plugins.html">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">Plugin List</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
+                    </li>
+                </a>
+                <a href="/readme.html">
+                    <li class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-content">README</div>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">information</i>
+                    </li>
+                </a>
+              </ul>
+        </div>
+    </div>
+    <div class="mdui-typo mdui-p-l-2">
+        <div style="text-align: center;">
+            <h1>HC++ Plugins</h1>
+            <p>Better Chatting Experience.</p>
+        </div>
+        <br><br><br>
+        <hr>
+        <h3 style="text-align: center;">What are you going to do?</h3>
+        <br>
+        <div class="mdui-container">
+            <div class="mdui-col-xs-12 mdui-col-md-4 mdui-p-u-2" onclick="aHref('/plugins.html')">
+                <button class="mdui-btn mdui-ripple mdui-center mdui-btn-raised mdui-btn-block">Install Plugin</button>
+            </div>
+            <div class="mdui-col-xs-12 mdui-col-md-4 mdui-p-u-2" onclick="aHref('https\:\/\/github.com/Hiyoteam/HCPlus-Plugins/pulls')">
+                <button class="mdui-btn mdui-ripple mdui-center mdui-btn-raised mdui-btn-block">Publish Plugin</button>
+            </div>
+            <div class="mdui-col-xs-12 mdui-col-md-4 mdui-p-u-2" onclick="aHref('/readme.html')">
+                <button class="mdui-btn mdui-ripple mdui-center mdui-btn-raised mdui-btn-block">Read The Document</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MDUI JavaScript -->
+    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <script>
+        function aHref(url) {
+            window.location.href=url;
+        }
+    </script>
+  </body>
+</html>
