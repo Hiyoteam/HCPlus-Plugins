@@ -1,4 +1,5 @@
 {
+  "id":"demo_plugin",
   "name":"Demo Plugin",
   "description":"A demo plugin for HC++.",
   "author":"0x24a",
