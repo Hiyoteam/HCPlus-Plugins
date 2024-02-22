@@ -1,5 +1,18 @@
 console.log("HCIM version 0.1.0 beta.");
 
+function swalImporter(){
+    link = document.createElement('script');
+    let info = navigator;
+    if(info.language == "zh-CN"){
+        link.href = 'https://camo.hach.chat/?proxyUrl=https://unpkg.com/sweetalert/dist/sweetalert.min.js'; 
+    }else{
+        link.href = 'https://unpkg.com/sweetalert/dist/sweetalert.min.js'; 
+    }
+    document.getElementsByTagName('head')[0].appendChild(link);
+}
+
+swalImporter();
+
 function getQueryVariable(variable)
 {
     var query = window.location.search.substring(1);
@@ -29,17 +42,6 @@ function getCookie(cname)
         if (c.indexOf(name)==0) return c.substring(name.length,c.length);
     }
     return "";
-}
-
-function swalImporter(){
-    link = document.createElement('script');
-    let info = navigator;
-    if(info.language == "zh-CN"){
-        link.href = 'https://camo.hach.chat/?proxyUrl=https://unpkg.com/sweetalert/dist/sweetalert.min.js'; 
-    }else{
-        link.href = 'https://unpkg.com/sweetalert/dist/sweetalert.min.js'; 
-    }
-    document.getElementsByTagName('head')[0].appendChild(link);
 }
 
 function errorMessage(message,code)
