@@ -238,7 +238,7 @@
             })
         }
         function fetchPluginDetails(name){
-            fetch(`/plugins/${name}/plugin.json`).then(processPluginDetails)
+            fetch(`/plugins/${name}/plugin.json`, {cache: "no-store"}).then(processPluginDetails)
             .catch(console.warn)
         }
         function processPlugins(e){
@@ -252,7 +252,7 @@
             })
         }
         function fetchPlugins(){
-            fetch("/plugins/plugins.json")
+            fetch("/plugins/plugins.json", {cache: "no-store"})
                 .then(processPlugins)
                 .catch(console.warn)
         }
