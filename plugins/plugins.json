@@ -1,5 +1,6 @@
 {
   "plugins":[
-    "demo_plugin"
+    "demo_plugin",
+    "ovui"
   ]
 }
