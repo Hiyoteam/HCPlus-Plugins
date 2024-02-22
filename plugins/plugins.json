@@ -1,6 +1,7 @@
 {
   "plugins":[
     "demo_plugin",
-    "ovui"
+    "ovui",
+    "163music"
   ]
 }
