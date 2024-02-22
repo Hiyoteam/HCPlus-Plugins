@@ -2,6 +2,7 @@
   "plugins":[
     "demo_plugin",
     "ovui",
-    "163music"
+    "163music",
+    "hc_im"
   ]
 }
