@@ -81,29 +81,34 @@
         function processPluginDetails(e){
             getText(e).then(function(json){
                 let details=JSON.parse(json)
-                let a=document.createElement("a");
-                a.setAttribute("href",`/plugin-detail.html#${details.id}`)
-                let li=document.createElement("li")
-                li.classList.add("mdui-list-item")
-                li.classList.add("mdui-ripple")
-                let content_div=document.createElement("div")
-                content_div.classList.add("mdui-list-item-content")
-                let content_title=document.createElement("div")
-                content_title.classList.add("mdui-list-item-title")
-                content_title.innerText=details.name
-                let content_text=document.createElement("div")
-                content_text.classList.add("mdui-list-item-text")
-                content_text.innerText=details.description
-                content_text.innerHTML+="\n"
-                content_text.innerText+="By "+details.author
-                content_div.appendChild(content_title)
-                content_div.appendChild(content_text)
-                li.appendChild(content_div)
-                a.appendChild(li)
-                document.getElementById("plugins-list").appendChild(a)
+                let a=document.getElementsByClassName(`plugin-${details.id}`)[0]
+                a.querySelector(".mdui-list-item-title").innerText=details.name
+                let description=a.querySelector(".mdui-list-item-text")
+                description.innerText=details.description
+                description.innerHTML+="<br>"
+                description.innerText+="By "+details.author
             })
         }
         function fetchPluginDetails(name){
+            let a=document.createElement("a");
+            a.setAttribute("href",`/plugin-detail.html#${name}`)
+            let li=document.createElement("li")
+            li.classList.add("mdui-list-item")
+            li.classList.add("mdui-ripple")
+            let content_div=document.createElement("div")
+            content_div.classList.add("mdui-list-item-content")
+            let content_title=document.createElement("div")
+            content_title.classList.add("mdui-list-item-title")
+            content_title.innerText=name
+            let content_text=document.createElement("div")
+            content_text.classList.add("mdui-list-item-text")
+            content_text.innerText="Loading..."
+            content_div.appendChild(content_title)
+            content_div.appendChild(content_text)
+            li.appendChild(content_div)
+            a.appendChild(li)
+            a.classList.add(`plugin-${name}`)
+            document.getElementById("plugins-list").appendChild(a)
             fetch(`/plugins/${name}/plugin.json`).then(processPluginDetails)
             .catch(console.warn)
         }
