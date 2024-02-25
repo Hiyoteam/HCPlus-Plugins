@@ -263,7 +263,7 @@ function inject_prompt() {
 
     if (myNick && shouldConnect) {
       localStorageSet("my-nick", myNick);
-      send({ cmd: "join", channel: channel, nick: myNick });
+      _send({ cmd: "join", channel: channel, nick: myNick });
       wasConnected = true;
       shouldAutoReconnect = true;
     } else {
