@@ -177,7 +177,7 @@
 .chat-receiver-container,
 .chat-sender-container,
 .chat-notice {
-  padding-bottom: 10px;
+  padding-bottom: 16px;
 }
 .chat-receiver .baseblock,
 .chat-receiver .blocks,
