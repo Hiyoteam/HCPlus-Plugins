@@ -1,0 +1,28 @@
+﻿button,select,option {
+    width: 100%!important;
+    background: transparent!important;
+    border-color: #44ffff!important;
+    color: unset!important;
+    border-radius: 3px!important;
+    border-width: 1px!important;
+    padding: 3px 10px 2px 10px!important;
+}
+button.char {
+    width: auto!important
+}
+option {
+    color: #eee!important;
+    background: #393834!important;
+}
+li:hover, .nick:hover, .message:hover, blockquote:hover {
+    background: rgb(255 255 255 / 2%)!important;
+}
+button:hover, select:hover {
+    box-shadow: 0px 0px 2px 0px #22dddd!important;
+}
+li::marker {
+    color: #04BFBF!important;
+}
+:root {
+    color-scheme: dark!important;
+}
