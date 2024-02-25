@@ -1,0 +1,125 @@
+.onlytext {
+}
+
+.none {
+}
+
+.block {
+  color: white;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.mynick {
+  background: #333636;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+}
+
+.im_trip {
+  background: #333636;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.onlytext .bot {
+  background: #8e44ad;
+}
+
+.onlytext .bot::after {
+  content: "Bot";
+}
+
+.onlytext .admin {
+  background: rgba(255, 0, 0, 0.5);
+}
+
+.onlytext .admin::after {
+  content: "Admin";
+}
+
+.onlytext .mod {
+  background: #44ff0066;
+}
+
+.onlytext .mod::after {
+  content: "Mod";
+}
+
+.onlytext .roomop {
+  background: orange;
+}
+
+.onlytext .roomop::after {
+  content: "RoomOP";
+}
+
+.onlytext .trust {
+  background: #11ffdd66;
+}
+
+.onlytext .trust::after {
+  content: "Trust";
+}
+
+.onlytext .primary {
+  /* background: gray; */
+  display: none;
+}
+
+/****************************************************/
+.onlyemoji {
+  display: contents;
+}
+
+.onlyemoji .block {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  padding: 0px;
+  margin: 0 2px;
+  /* background: #6699cc; */
+}
+
+.onlyemoji .primary {
+  display: none;
+}
+
+.onlyemoji .admin {
+  background-image: url("img/levels/admin.png");
+  background-size: cover;
+}
+
+.onlyemoji .mod {
+  background-image: url("img/levels/mod.png");
+  background-size: cover;
+  padding: 0px;
+}
+
+.onlyemoji .roomop {
+  background-image: url("img/levels/roomop.png");
+  background-size: cover;
+}
+
+.onlyemoji .trust {
+  background-image: url("img/levels/trust.png");
+  background-size: cover;
+}
+
+.onlyemoji .bot {
+  background-image: url("img/levels/bot.png");
+  background-size: cover;
+}
+/************************************************************/
+.mynick,
+.im_trip {
+  margin: 2px;
+  padding: 3px;
+}
+.onlyemoji .block {
+  padding: 2px;
+}

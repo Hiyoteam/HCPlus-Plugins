@@ -1,0 +1,242 @@
+.pop_max_container {
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.pop_container {
+  width: 320px;
+  background: #e7e1da;
+  border-radius: 5px;
+  position: relative;
+  color: #3b4354;
+  z-index: 3;
+  margin: 1em;
+  max-height: 90%;
+  max-width: 100%;
+}
+
+.pop_container button {
+  position: relative;
+  padding: 10px 1em;
+  color: #e7e1da;
+  background-color: #394153;
+  border: 0;
+  border-radius: 9px;
+  outline: none;
+  font-size: 18px;
+}
+
+.pop_container .body {
+  padding: 10px;
+}
+
+.pop_header {
+  display: flex;
+  align-items: center;
+}
+
+.pop_header .title {
+  flex: 1;
+  text-align: center;
+  font-size: 1.5em;
+  margin: 5px;
+}
+
+.pop_arrow {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  margin: -10px;
+}
+
+.pop_arrow.lf {
+  left: 0;
+  top: 0;
+}
+
+.pop_arrow.dlf {
+  left: 0;
+  bottom: 0;
+  rotate: 270deg;
+}
+
+.pop_arrow.rh {
+  right: 0;
+  top: 0;
+  rotate: 90deg;
+}
+
+.pop_arrow.drh {
+  right: 0;
+  bottom: 0;
+  rotate: 180deg;
+}
+
+.pop_header .close_btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 5px;
+  width: 1.5em;
+  height: 1.5em;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAAOVBMVEVHcEzPv4/Pt4/UvI7UvY3SvIzSvI7Tu4/Tu4vUvY/SvI7TvI7Pv4/Puo/TvI7SvI7Pr4/UuorTvI6w3uGvAAAAEnRSTlMAICDfn6CgQECf3/4QMO/vEDC0IvapAAABOklEQVRYw+3X0ZKDIAwF0AaUVldr6/9/7JbdVgKSEIwvneE+Z850DAn0cmlpafniTNeQOVcAqGBioOu6ZTS5AjOGipsIyjuRJIIoB0sS6G7oGlP1izq6Zqj7Rl3REUKUNNR2jZA+zlKGRtPT0sdxvnc85PtOSpvzdwpY6P/8EBJyvMRB8D4/WSlyXtJTMr0ZKXGk2UkHnZ102EkkhRNJKgdJSidIWieRnOY26E9ykKR0wv7pTnKU0rCup0hD3P5O67heJ6HzrJKiuVBIyXwdlnZzelDKzHuVNAOzDxMJDHcdWWD2YSSB5S9IL5F7DElgS1e2BWYfbtLLKT4i7tzewJtO+BpxxU0ng1x5Z4ogJ9iZIgiYh8ZSA1lS8v2q+UaUFBxp1/LS2/nx4aDpFpIdpRkVPNqfwJaWb84vmyo1griDd2kAAAAASUVORK5CYII=");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.pop_header .close_btn:active:before,
+.pop_container button:active:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: hsla(0, 0%, 100%, 0.1);
+  border-radius: 8px;
+}
+
+.pop_container input {
+  display: block;
+  border: none;
+  width: 100%;
+  font-size: 1em;
+  height: 2em;
+  line-height: 1.41176471;
+  outline: 0;
+  background: transparent;
+  /* border-radius: 5px; */
+  /* border-top: 1px solid hsla(0, 0%, 100%, .1); */
+  border-bottom: 5px solid #394153;
+  /* border-left: 1px solid hsla(0, 0%, 100%, .1); */
+  /* border-right: 1px solid hsla(0, 0%, 100%, .1); */
+  padding: 0;
+}
+
+.pop_container input,
+.pop_container input::placeholder {
+  color: #394153;
+}
+
+.pop_split {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAy0AAAAbCAMAAABGBZAZAAAAb1BMVEXRu43Pt4/Ru43Tu4vQu4zfv4DSuo1HcEzPv4/Ru43Pu4/RvI7Pv4/SuYzPuo3Puo/PvIzPuorKtYrKv4rQu47SuYzNu43Uuo/RuY7SvIzPuYzSv4zPu4vTuo7Quo7UuorQuozPt4fRvI7Pu43RuI6dyzQmAAAAJXRSTlOAIDhAeAhgABBwQEggUGAwUDAYGHgoODBYUFAoQGhoMGggWHBICkyxTwAAAjBJREFUGBntwem2okgQhdEPyMwTATjdqeapu9//GZuSpZYKd9VfIfZGczYKYY3eNAfNqDGFsD5GrRlomiU2CmF9PvNimoamfQNMIayNAUXT0KSGQVEIa/OZQaNJaErNUa0Q1uXA0QdNQRN+MHoxXekahbAkXaMrlhh90AR0J3ecuOkiFyimEJYiFyimC3NOGt1DN3KTuPAnnZgzcFMIy2DOwE0nz86FH0w30JV+k7jWaNQnSAm8UghL0CdICbzSqObGptcVdJa/bBL3imlQA1uzPdAohMdXA/+Y7YFGAyvc882XrDM06pvCnEbSzr3S4NWhUQiPrgOvNNh5epVyk5hRvvYaIeW+KYn3+EGyrFFLCEvQZh3lLPXOe1L52meJX3v+QjGdmRPCo/v2rLO+8Bf2FVKuusK7vMB/WUfZpJ0TwiP7t5Zy1lHuYOu8J227KktoVHU/mZHarBb8oEHvflAIj+81+UGD3qGTWuZsuyrrCJ3Z7mPi3tY0aIGNWQFqhfD4WmBjVoBaAyvcSx93WWfoyuueG7VGlcNLglQphCWoHF4SpEqjlmtpW2X9Cd2wnXPhzzoxZ+CmEJbBnIGbTp6ci9Rm3UD3Wk7cdGEFtlkhLIUV2GZdmHPSZt1BE56co2S60nYKYUnaTlcscZQqTUBTzPltpxDWpeY3N01Bk54YfFIIa1MYPGsSmlYDphDWxoBa09CMwieFsD57vmsGmlFhCmF9DNMMNOdNIazRm+b8DynQD179IlWYAAAAAElFTkSuQmCC");
+  height: 10px;
+  width: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 5px;
+}
+
+.pop_content {
+  margin: 5px;
+  text-align: center;
+  word-break: break-all;
+  max-height: 100px;
+  overflow: auto;
+  white-space: pre;
+}
+
+.pop_actions {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pop_actions .warn {
+  background: #ffa000;
+}
+
+.pop_actions .error {
+  background: #e64a19;
+}
+
+.pop_actions .success {
+  background: #00796b;
+}
+
+.item {
+  flex: 1 1 auto;
+  /* 等比例伸缩 */
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+  margin: 5px;
+}
+
+/* 当只有一个 item 时，将其宽度设为100% */
+.pop_actions > .item:first-child:last-child {
+  flex: 0 1 100%;
+}
+
+.pop_mask {
+  content: "";
+  display: block;
+  width: 132%;
+  height: 167%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+/************************************/
+/*弹层动画（放大）*/
+
+.popIn {
+  -webkit-animation: fadeleftIn 0.4s;
+  animation: fadeleftIn 0.4s;
+  -webkit-animation-name: popIn;
+  animation-name: popIn;
+}
+
+@-webkit-keyframes popIn {
+  0% {
+    -webkit-transform: scale3d(0, 0, 0);
+    transform: scale3d(0.5, 0.5, 0.5);
+    opacity: 0;
+  }
+  50% {
+    -webkit-animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    -webkit-transform: scale3d(0, 0, 0);
+    transform: scale3d(0.5, 0.5, 0.5);
+    opacity: 0;
+  }
+  50% {
+    -webkit-animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 1;
+  }
+}
+/************************************/
