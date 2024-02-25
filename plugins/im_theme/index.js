@@ -2,6 +2,7 @@
 const host = "https://plugins.hach.chat/plugins/im_theme/";
 const __$ = (e) => document.querySelector(e);
 
+
 var raw_setScheme = setScheme;
 var im_current_theme = localStorage["im_theme"] ?? "jewel";
 
