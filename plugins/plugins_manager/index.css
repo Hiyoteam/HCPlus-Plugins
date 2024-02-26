@@ -4,6 +4,8 @@
   padding: 5px;
   border: 6px solid #292824;
   border-radius: 6px;
+  width: 90%;
+  max-width: 500px;
 }
 
 .c_container {
@@ -16,5 +18,9 @@
   top: 0;
   left: 0;
   position: fixed;
-  background: rgb(0 0 0 / 10%);
+  background: rgb(0 0 0 / 30%);
+}
+
+tbody {
+  margin-bottom: 0;
 }

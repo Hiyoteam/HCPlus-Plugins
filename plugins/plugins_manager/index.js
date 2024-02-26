@@ -40,15 +40,16 @@ plugins_manager_show.addEventListener("click",()=>{
 });
 document.getElementById("plugin-buttons").appendChild(plugins_manager_show);
 
-function getTableList() {
+function getTableList(showInfo=false) {
   let table = document.createElement('table');
+  table.style.margin = "0";
 
   let header = table.createTHead();
   let title = header.insertRow();
   let Pname = title.insertCell();
   let Puse = title.insertCell();
   Pname.innerHTML = '<b>Plugin</b>';
-  Puse.innerHTML = '<b>Manage</b>';
+  Puse.innerHTML = '<b>Info&nbsp;Manage</b>';
   Puse.style["text-align"] = "right";
 
   let tbody = table.createTBody();
@@ -58,14 +59,18 @@ function getTableList() {
     let pluginLine = tbody.insertRow();
     let pname = pluginLine.insertCell();
     let puse = pluginLine.insertCell();
-    pname.innerText = plugin.split("/")[4];
-    puse.innerHTML = `<a href="https://plugins.hach.chat/plugin-detail.html#${plugin.split("/")[4]}" target="_blank">View</a>&nbsp;<a href="#" onclick="removePlugin('${plugin}')">Remove</a>`;
+    if (plugin.split("/")[4]) {
+      pname.innerText = `${plugin.split("/")[4].substring(0, 20)}${plugin.split("/")[4].length > 20 ? "...":""}`;
+      puse.innerHTML = `<a href="https://plugins.hach.chat/plugin-detail.html#${plugin.split("/")[4]}" target="_blank" style="color: #fff;">View</a>&nbsp;<a href="#" onclick="removePlugin('${plugin}')" style="color: #fff;">Remove</a>`;
+    } else {
+      pname.innerHTML = "<i>Unknow Plugin</i>";
+      puse.innerHTML = `<s>View</s>&nbsp;<a href="#" onclick="removePlugin('${plugin}')" style="color: #fff;">Remove</a>`;
+    }
     puse.style["text-align"] = "right";
   });
 
-  plugins_manager.innerHTML = "";
+  plugins_manager.innerHTML = showInfo?`&nbsp;Removed plugin, <b><a href="#" onclick="location.reload()" style="color: #fff;">Refresh</a> to completely remove</b>.`:"";
   plugins_manager.appendChild(table);
-  plugins_manager.style.width = "90%"
 }
 
 function removePlugin(pluginUrl) {
@@ -74,7 +79,6 @@ function removePlugin(pluginUrl) {
     plugins.splice(index, 1);
   }
   localStorage.setItem('plugins', JSON.stringify(plugins));
-  getTableList();
-  pushMessage({nick:'*',text:'Removed plugin, **Refresh to completely remove**.'})
+  getTableList(true);
 }
 
