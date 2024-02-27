@@ -13,3 +13,13 @@ if (typeof host != 'undefined') {
 } else {
   addCss('https://plugins.hach.chat/plugins/ovui/index.css');
 }
+
+document.querySelectorAll("#users>li>a").forEach(e=>{
+  e.addEventListener("mousemove", ()=>{
+    e.style.textShadow = `0 0 10px`;
+  });
+  e.addEventListener("mouseout", ()=>{
+    e.style.textShadow = ``;
+  });
+  e.style.transition = `all 0.5s ease`;
+});
