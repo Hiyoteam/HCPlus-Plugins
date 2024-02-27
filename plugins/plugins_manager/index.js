@@ -40,37 +40,48 @@ plugins_manager_show.addEventListener("click",()=>{
 });
 document.getElementById("plugin-buttons").appendChild(plugins_manager_show);
 
-function getTableList(showInfo=false) {
+var getTableList = async(showInfo=false) => {
   let table = document.createElement('table');
+  let Zerror = false
   table.style.margin = "0";
+  fetch("https://plugins.hach.chat/plugins/plugins.json", {
+    "method": "GET",
+    "mode": "cors"
+  })
+  .then (async(req)=>{
+    let pluginsList = (await req.json()).plugins;
+    let header = table.createTHead();
+    let title = header.insertRow();
+    let Pname = title.insertCell();
+    let Puse = title.insertCell();
+    Pname.innerHTML = '<b>Plugin</b>';
+    Puse.innerHTML = '<b>Info&nbsp;Manage</b>';
+    Puse.style["text-align"] = "right";
 
-  let header = table.createTHead();
-  let title = header.insertRow();
-  let Pname = title.insertCell();
-  let Puse = title.insertCell();
-  Pname.innerHTML = '<b>Plugin</b>';
-  Puse.innerHTML = '<b>Info&nbsp;Manage</b>';
-  Puse.style["text-align"] = "right";
+    let tbody = table.createTBody();
 
-  let tbody = table.createTBody();
+    plugins = JSON.parse(localStorage.getItem('plugins'));
+    plugins.forEach((plugin)=>{
+      let pluginLine = tbody.insertRow();
+      let pname = pluginLine.insertCell();
+      let puse = pluginLine.insertCell();
+      if (pluginsList.includes(plugin.split("/")[4]) && plugin.endsWith(`.js`)) {
+        pname.innerText = `${plugin.split("/")[4].substring(0, 20)}${plugin.split("/")[4].length > 20 ? "...":""}`;
+        puse.innerHTML = `<a href="https://plugins.hach.chat/plugin-detail.html#${plugin.split("/")[4]}" target="_blank" style="color: #fff;">View</a>&nbsp;<a href="#" onclick="removePlugin('${plugin}')" style="color: #fff;">Remove</a>`;
+      } else {
+        if (plugin.split("/")[4]) pname.innerText = `${plugin.split("/")[4].substring(0, 20)}${plugin.split("/")[4].length > 20 ? "...":""}`
+        pname.innerHTML = `<i>Unknow Plugin${pname.innerText?" Name:":" Path"}</i> ${pname.innerText}`;
+        puse.innerHTML = `<s>View</s>&nbsp;<a href="#" onclick="removePlugin('${plugin}')" style="color: #fff;"><b>Remove</b></a>`;
+      }
+      puse.style["text-align"] = "right";
+    });
 
-  plugins = JSON.parse(localStorage.getItem('plugins'));
-  plugins.forEach((plugin)=>{
-    let pluginLine = tbody.insertRow();
-    let pname = pluginLine.insertCell();
-    let puse = pluginLine.insertCell();
-    if (plugin.split("/")[4]) {
-      pname.innerText = `${plugin.split("/")[4].substring(0, 20)}${plugin.split("/")[4].length > 20 ? "...":""}`;
-      puse.innerHTML = `<a href="https://plugins.hach.chat/plugin-detail.html#${plugin.split("/")[4]}" target="_blank" style="color: #fff;">View</a>&nbsp;<a href="#" onclick="removePlugin('${plugin}')" style="color: #fff;">Remove</a>`;
-    } else {
-      pname.innerHTML = "<i>Unknow Plugin</i>";
-      puse.innerHTML = `<s>View</s>&nbsp;<a href="#" onclick="removePlugin('${plugin}')" style="color: #fff;">Remove</a>`;
-    }
-    puse.style["text-align"] = "right";
+    plugins_manager.innerHTML = showInfo?`&nbsp;Removed plugin, <b><a href="#" onclick="location.reload()" style="color: #fff;">Refresh</a> to completely remove</b>.`:"";
+    plugins_manager.appendChild(table);
+  })
+  .catch ((e)=>{
+    plugins_manager.innerHTML = `&nbsp;Unable to fetch plugin list, unable to verify plugin validity, please try again.`;
   });
-
-  plugins_manager.innerHTML = showInfo?`&nbsp;Removed plugin, <b><a href="#" onclick="location.reload()" style="color: #fff;">Refresh</a> to completely remove</b>.`:"";
-  plugins_manager.appendChild(table);
 }
 
 function removePlugin(pluginUrl) {
