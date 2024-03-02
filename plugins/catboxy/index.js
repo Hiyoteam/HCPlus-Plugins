@@ -74,14 +74,23 @@ function uploadFile(file) {
         .then(response => {
             (async () => {
                 pushMessage({nick:"*",text:`File upload ID ${placeholder} success.`})
-                document.querySelector("#chatinput").value=document.querySelector("#chatinput").value.replace(`Uploading :: ${placeholder}`,CAMO_BASE+await response.text())
+                if(document.querySelector("#chatinput").value.includes(`Uploading :: ${placeholder}`)){
+                    document.querySelector("#chatinput").value=document.querySelector("#chatinput").value.replace(`Uploading :: ${placeholder}`,CAMO_BASE+await response.text()+"&mime="+file.type)
+                }else{
+                    document.querySelector("#chatinput").value=document.querySelector("#chatinput").value.replace(`Uploading :: ${placeholder}`,CAMO_BASE+await response.text()+"&mime="+file.type)
+                }
             })();
         })
         .catch(error => {
             (async () => {
                 pushMessage({nick:"!",text:"Failed to upload file."})
-                document.querySelector("#chatinput").value=document.querySelector("#chatinput").value.replace(`Uploading :: ${placeholder}`,"UPLOAD_FAILED")
-            })();
+                if(document.querySelector("#chatinput").value.includes(`Uploading :: ${placeholder}`)){
+                    document.querySelector("#chatinput").value=document.querySelector("#chatinput").value.replace(`Uploading :: ${placeholder}`,"UPLOAD_FAILED")}
+                    else{
+                    //do nothing.
+                }
+                }
+            )();
         });
 }
 addPluginButton("Upload Image",() => selectImage())
