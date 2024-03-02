@@ -11,5 +11,6 @@
     "plugins_manager",
     "i18n_extension",
     "post_image_catbox",
+    "catboxy"
   ]
 }
