@@ -73,13 +73,13 @@ function uploadFile(file) {
     })
         .then(response => {
             (async () => {
-                pushMessage({nick:"*",text:`Image upload ID ${placeholder} success.`})
+                pushMessage({nick:"*",text:`File upload ID ${placeholder} success.`})
                 document.querySelector("#chatinput").value=document.querySelector("#chatinput").value.replace(`Uploading :: ${placeholder}`,CAMO_BASE+await response.text())
             })();
         })
         .catch(error => {
             (async () => {
-                pushMessage({nick:"!",text:"Failed to upload image."})
+                pushMessage({nick:"!",text:"Failed to upload file."})
                 document.querySelector("#chatinput").value=document.querySelector("#chatinput").value.replace(`Uploading :: ${placeholder}`,"UPLOAD_FAILED")
             })();
         });
