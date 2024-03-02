@@ -1,4 +1,4 @@
-ignoredHashs = [[
+ignoredHashs = [
     "KoyM2CRVuYN9xra",
     "MmuPWsSvazGEt55",
     "wpJvdbXdyA5Wxsq",
