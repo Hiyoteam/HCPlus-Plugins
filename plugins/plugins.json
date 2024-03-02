@@ -8,6 +8,7 @@
     "rain_render",
     "no_bomb",
     "im_theme",
-    "plugins_manager"
+    "plugins_manager",
+    "i18n_extension"
   ]
 }
