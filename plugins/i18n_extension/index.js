@@ -1393,15 +1393,23 @@ var ex_languages = [
     ],
   };
   var _lang = localStorage["i18n_ex"] || localStorage["i18n"] || "en-US";
+  
+  function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != "function") {
+      window.onload = func;
+    } else {
+      window.onload = function () {
+        oldonload();
+        func();
+      };
+    }
+  }
   function tr() {
-    if (
-      (localStorageGet("i18n_ex") || localStorageGet("i18n")) &&
-      (localStorageGet("i18n_ex") != "en-US" ||
-        localStorageGet("i18n") != "en-US")
-    ) {
-      if (i18n.has(localStorageGet("i18n_ex") || localStorageGet("i18n"))) {
-        _lang = localStorageGet("i18n_ex") || localStorageGet("i18n");
-        document.querySelector("html").lang = _lang;
+    let __lang = (_lang = localStorageGet("i18n_ex") || localStorageGet("i18n"));
+    if (__lang && __lang != "en-US") {
+      if (i18n.has(__lang)) {
+        document.querySelector("html").lang = __lang;
         document.querySelectorAll("[tr]").forEach((el) => {
           if (el.tagName == "button") debugger;
           el.innerHTML = _i18ntranslate(el.innerHTML, "ui");
@@ -1459,18 +1467,16 @@ var ex_languages = [
     });
     $id("i18n-selector").onchange = function (e) {
       let v = e.target.value;
-      if (v == "en-US" || v == "zh-CN") setLanguage((_lang = v));
-      else {
-        localStorage["i18n"] = "en-US";
-        localStorage["i18n_ex"] = _lang = v;
-        pushMessage(
-          {
-            nick: "!",
-            text: "Please refresh to apply language. Multi language is in test and not perfect yet. ",
-          },
-          { i18n: true }
-        );
-      }
+      localStorage["i18n"] = v == "en-US" || v == "zh-CN" ? v : "en-US";
+      _lang = localStorage["i18n_ex"] = v;
+     // console.log(_lang);
+      pushMessage(
+        {
+          nick: "!",
+          text: "Please refresh to apply language. Multi language is in test and not perfect yet. ",
+        },
+        { i18n: true }
+      );
     };
     $id("i18n-selector").value =
       localStorage["i18n_ex"] || localStorage["i18n"] || "en-US";
@@ -1478,5 +1484,5 @@ var ex_languages = [
     tr();
     console.log(i18n);
   }
-  window.addEventListener("load", init);
+  addLoadEvent(() => init());
   
