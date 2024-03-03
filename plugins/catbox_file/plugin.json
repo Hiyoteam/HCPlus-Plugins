@@ -1,7 +1,7 @@
 {
   "id":"catbox_file",
   "name":"CatBoxFile",
-  "description":"This plugin allows you to drag and drop or paste multiple files onto the HC++ page, automatically triggering uploads to Catbox. It is an insertable plugin that calculates your cursor position, allowing you to continue writing while the files are being uploaded. Your cursor will not be moved to the beginning or end of the input box due to the uploads.",
+  "description":"This plugin allows you to drag and drop or paste multiple files onto the HC++ page, automatically triggering uploads to Catbox. It is an insertable plugin that calculates your cursor position, allowing you to continue writing while the files are being uploaded. Your cursor will not be moved to the beginning or end of the input box due to the uploads. If you are using HC++ on a mobile device, we recommend installing CatBoxy by 0x24a, as this plugin is only compatible with the desktop version.",
   "author":"cmd1152",
   "contact":"cmd1152__@Discord"
 }
