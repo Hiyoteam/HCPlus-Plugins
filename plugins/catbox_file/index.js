@@ -23,7 +23,7 @@ document.addEventListener('drop', function (e) {
 async function uploadImageToCatbox(file,fileType,name='image.png') {
   let updateMessage = `Updateing...(${Math.floor(Math.random() * 114514) + 100})`;
   let removeTemp = (error) => {
-    pushMessage({nick:'!',text:'Unable to upload image: ' + error});
+    pushMessage({nick:'!',text:'Unable to upload: ' + error});
     let newSelectionStart = chatinput.selectionStart - updateMessage.length - 2
     chatinput.value = chatinput.value.replace(`[${updateMessage}]`, ``);
     chatinput.setSelectionRange(newSelectionStart, newSelectionStart);
@@ -56,7 +56,7 @@ async function uploadImageToCatbox(file,fileType,name='image.png') {
       chatinput.setSelectionRange(newSelectionStart, newSelectionStart);
       updateInputSize();
     } else {
-      throw new Error(`Failed to upload image:\n\`\`\`\n${await response.text()}`);
+      throw new Error(`Failed to upload:\n\`\`\`\n${await response.text()}`);
     }
   } catch (err) {
     removeTemp(err.message || err)
