@@ -24,8 +24,8 @@ async function uploadImageToCatbox(file,fileType,name='image.png') {
   let updateMessage = `Updateing...(${Math.floor(Math.random() * 114514) + 100})`;
   let removeTemp = (error) => {
     pushMessage({nick:'!',text:'Unable to upload image: ' + error});
-    let newSelectionStart = chatinput.selectionStart - updateMessage.length - 5
-    chatinput.value = chatinput.value.replace(`![](${updateMessage})`, ``);
+    let newSelectionStart = chatinput.selectionStart - updateMessage.length - 2
+    chatinput.value = chatinput.value.replace(`[${updateMessage}]`, ``);
     chatinput.setSelectionRange(newSelectionStart, newSelectionStart);
     updateInputSize();
   }
