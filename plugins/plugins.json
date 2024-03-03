@@ -10,7 +10,7 @@
     "im_theme",
     "plugins_manager",
     "i18n_extension",
-    "post_image_catbox",
+    "catbox_file",
     "catboxy"
   ]
 }
