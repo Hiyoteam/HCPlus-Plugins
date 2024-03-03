@@ -48,9 +48,14 @@ function uploadImage(file) {
     })
         .then(response => {
             (async () => {
-                pushMessage({nick:"*",text:`Image upload ID ${placeholder} success.`})
-                document.querySelector("#chatinput").value=document.querySelector("#chatinput").value.replace(`Uploading :: ${placeholder}`,CAMO_BASE+await response.text())
-            })();
+                let text=await response.text()
+                if(text.startsWith("https://files.catbox.moe/")){
+                    pushMessage({nick:"*",text:`Image upload ID ${placeholder} success.`})
+                    document.querySelector("#chatinput").value=document.querySelector("#chatinput").value.replace(`Uploading :: ${placeholder}`,CAMO_BASE+text)
+            }else{
+                pushMessage({nick:"!",text:`Failed to upload image: ${text}`})
+                document.querySelector("#chatinput").value=document.querySelector("#chatinput").value.replace(`Uploading :: ${placeholder}`,"UPLOAD_FAILED")
+            }})();
         })
         .catch(error => {
             (async () => {
