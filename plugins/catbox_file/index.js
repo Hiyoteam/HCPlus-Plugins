@@ -6,23 +6,22 @@ document.addEventListener('paste', function (e) {
   });
   if (items.length == 0) return;
   items.forEach((item)=>{
-    uploadImageToCatbox(item.getAsFile());
+    uploadImageToCatbox(item.getAsFile(),item.getAsFile().type);
   });
 });
 document.addEventListener('drop', function (e) {
   e.preventDefault();
   const dt = e.dataTransfer;
   const files = dt.files;
-  const imageFiles = Array.from(files).filter(file => file.type.includes('image/'));
 
-  if (imageFiles.length === 0) return;
+  if (files.length === 0) return;
 
-  imageFiles.forEach(file => {
-    uploadImageToCatbox(file);
+  Array.from(files).forEach(file => {
+    uploadImageToCatbox(file,file.type,file.name);
   });
 });
-async function uploadImageToCatbox(file) {
-  let updateMessage = `Updateing...(${Math.random() * 114514})`;
+async function uploadImageToCatbox(file,fileType,name='image.png') {
+  let updateMessage = `Updateing...(${Math.floor(Math.random() * 114514) + 100})`;
   let removeTemp = (error) => {
     pushMessage({nick:'!',text:'Unable to upload image: ' + error});
     let newSelectionStart = chatinput.selectionStart - updateMessage.length - 5
@@ -31,7 +30,7 @@ async function uploadImageToCatbox(file) {
     updateInputSize();
   }
   let updateSel = chatinput.selectionStart;
-  insertAtCursor(`![](${updateMessage})`);
+  insertAtCursor(`[${updateMessage}]`);
   updateInputSize();
   try {
     const formData = new FormData();
@@ -46,8 +45,14 @@ async function uploadImageToCatbox(file) {
 
     if (response.ok) {
       const result = await response.text();
-      let newSelectionStart = chatinput.selectionStart <= updateSel ? chatinput.selectionStart : chatinput.selectionStart + result.length - updateMessage.length + 'https://camo.hach.chat/?proxyUrl='.length
-      chatinput.value = chatinput.value.replace(`![](${updateMessage})`, `![](https://camo.hach.chat/?proxyUrl=${result})`);
+      let newSelectionStart
+      if (chatinput.selectionStart <= updateSel) {
+        newSelectionStart = chatinput.selectionStart;
+      } else {
+        newSelectionStart = chatinput.selectionStart + result.length + fileType.length + name.length - updateMessage.length + '!(https://camo.hach.chat/?proxyUrl=&mine=)'.length
+        newSelectionStart += fileType.includes('image/')?0:1;
+      }
+      chatinput.value = chatinput.value.replace(`[${updateMessage}]`, `${fileType.includes('image/')?`![${name}](https://camo.hach.chat/?proxyUrl=${result}&mine=${fileType})`:`[[${name}](https://camo.hach.chat/?proxyUrl=${result}&mine=${fileType})]`}`);
       chatinput.setSelectionRange(newSelectionStart, newSelectionStart);
       updateInputSize();
     } else {
