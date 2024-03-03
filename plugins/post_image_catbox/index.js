@@ -30,6 +30,7 @@ async function uploadImageToCatbox(file) {
     chatinput.setSelectionRange(newSelectionStart, newSelectionStart);
     updateInputSize();
   }
+  let updateSel = chatinput.selectionStart;
   insertAtCursor(`![](${updateMessage})`);
   updateInputSize();
   try {
@@ -45,7 +46,7 @@ async function uploadImageToCatbox(file) {
 
     if (response.ok) {
       const result = await response.text();
-      let newSelectionStart = chatinput.selectionStart + result.length - updateMessage.length + 'https://camo.hach.chat/?proxyUrl='.length
+      let newSelectionStart = chatinput.selectionStart <= updateSel ? chatinput.selectionStart : chatinput.selectionStart + result.length - updateMessage.length + 'https://camo.hach.chat/?proxyUrl='.length
       chatinput.value = chatinput.value.replace(`![](${updateMessage})`, `![](https://camo.hach.chat/?proxyUrl=${result})`);
       chatinput.setSelectionRange(newSelectionStart, newSelectionStart);
       updateInputSize();
