@@ -11,6 +11,7 @@
     "plugins_manager",
     "i18n_extension",
     "catbox_file",
-    "catboxy"
+    "catboxy",
+    "fast_goto"
   ]
 }
