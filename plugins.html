@@ -105,6 +105,12 @@
                 .then(processPlugins)
                 .catch(console.warn)
         }
+        async function fetchLastPush(){
+            let request=await fetch("https://camo.hach.chat/?proxyUrl=https://api.github.com/repos/Hiyoteam/HCPlus-Plugins/commits/main",{cache: "no-store"})
+            let json=await request.json()
+            return json.commit
+        }
+
         fetchPlugins()
     </script>
   </body>

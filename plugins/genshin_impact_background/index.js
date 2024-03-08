@@ -357,7 +357,9 @@
       ]
     }
   ].map(e => e.list.map(u => ({ ...u, city: e.city }))).flat();
+
   var host = `${location.protocol}//${location.hostname}/plugins/genshin_impact_background/`;
+
   var selected_people = localStorage['_gs_cache_name'] || 'hutao';
   var opacity = localStorage['_gs_bg_opacity'] || '30';
   var setPeople = (e) => {
