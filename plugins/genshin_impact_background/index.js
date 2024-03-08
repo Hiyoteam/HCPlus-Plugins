@@ -7,6 +7,10 @@
       },
       "list": [
         {
+          "name": "禁用",
+          "title": "disable"
+        },
+        {
           "name": "琴",
           "title": "qin"
         },
@@ -353,8 +357,9 @@
       ]
     }
   ].map(e => e.list.map(u => ({ ...u, city: e.city }))).flat();
-  var host = "http://127.0.0.1/plugins/genshin_impact_background/";
+  var host = `${location.protocol}//${location.hostname}/plugins/genshin_impact_background/`;
   var selected_people = localStorage['_gs_cache_name'] || 'hutao';
+  var opacity = localStorage['_gs_bg_opacity'] || '30';
   var setPeople = (e) => {
     setImage(selected_people = e);
   }
@@ -373,9 +378,13 @@
   var img_obj = {},
     container_obj = {};
   var cache_obj = {};
+  var setOpacity = (e) => {
+    img_obj.style.opacity = e + '%';
+    opacity = localStorage['_gs_bg_opacity'] = e;
+  };
   /***************************************************** */
   function hookFunction(hook, func) {
-   // console.log(window[hook], func);
+    // console.log(window[hook], func);
     var oldonload = window[hook];
     if (typeof window[hook] != "function") {
       window[hook] = func;
@@ -447,7 +456,7 @@
         conf.cache = false; localStorage['_gs_cache'] = 'false';
         conf.cache_name = localStorage['_gs_cache_name'] = '';
       }
-     // console.log(conf, name);
+      // console.log(conf, name);
     }
     return conf;
   }
@@ -456,9 +465,10 @@
     // console.log('getimage', people);
     if (!people.find)
       people = people_list[0];
-    return await ToBase64(`${host}assset/${people.city.name}/${name}${mode == '0' ? '.png' : '.2.png'}`);
+    return await ToBase64(`${host}asset/${people.city.name}/${name}${mode == '0' ? '.png' : '.2.png'}`);
   }
   async function getPeopleImage(name, mode) {
+    if (name == 'disable') return '';
     let cache = await useCache(name);
     return mode == '0' ? cache.cache_pc_base64 : cache.cache_phone;
   }
@@ -476,7 +486,7 @@
       //console.log("网页宽屏幕显示");
       return "k";
     } else if (aspectRatio < 1) {
-     // console.log("网页竖屏幕显示");
+      // console.log("网页竖屏幕显示");
       return "s";
     } else {
       //console.log("网页正方形显示");
@@ -530,19 +540,35 @@
     container_obj = div;
 
     document.body.appendChild(div);
-    injectSelect('背景图片', people_list.map(e => [e.name, e.title]), (e) => {
+    injectSelect('Background Image', people_list.map(e => [e.name, e.title]), (e) => {
       let val = e.target.value;
       setPeople(val);
     }, (e) => {
       e.value = selected_people;
       return e;
-    })
+    });
+    injectSelect('Opacity', [...Array(11)].map((e, i) => [(i * 10).toString() + '%', i * 10]), (e) => {
+      setOpacity(e.target.value.toString());
+    }, (e) => {
+      e.value = opacity;
+      return e;
+    });
+    injectSelect('Background Layer', [
+      ['Before', '0'],
+      ['After', '1']
+    ], (e) => {
+      container_obj.style.zIndex = (localStorage['_gs_bg_zindex'] = e.target.value) == '0' ? '-9999999' : '9999999';
+    }, (e) => {
+      container_obj.style.zIndex = (e.value = localStorage['_gs_bg_zindex'] || '1') == '0' ? '-9999999' : '9999999';
+      return e;
+    });
   }
   injectcss(host + "style.css");
- // console.log(people_list);
+  // console.log(people_list);
   hookFunction("onload", () => {
     init();
     setImage(selected_people);
+    setOpacity(opacity);
   });
   hookFunction('onresize', () => setImage(selected_people));
 })();

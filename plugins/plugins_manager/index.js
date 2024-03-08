@@ -30,15 +30,12 @@ plugins_manager_back.addEventListener("click",()=>{
 plugins_manager.addEventListener("click",()=>{
   canclose = false
 });
-var plugins_manager_show = document.createElement('button');
-plugins_manager_show.id = "show_plugins_manager";
-plugins_manager_show.innerText = "Plugins Manager";
-plugins_manager_show.addEventListener("click",()=>{
+function openPluginManager(){
   plugins_manager_back.style.display = "flex";
   canclose = true;
   getTableList();
-});
-document.getElementById("plugin-buttons").appendChild(plugins_manager_show);
+};
+addPluginButton("Plugin Manager", openPluginManager);
 
 var getTableList = async(showInfo=false) => {
   let table = document.createElement('table');
