@@ -63,3 +63,4 @@ plugins.forEach(element => {
     }
 });
 plugins=dwiowedew
+localStorageSet("plugins",JSON.stringify(dwiowedew))
