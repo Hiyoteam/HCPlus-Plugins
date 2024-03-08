@@ -194,6 +194,7 @@
 .chat-sender p {
   max-width: 400px;
   overflow: auto;
+  line-height: normal;
 }
 .chat-receiver mark,
 .chat-sender mark {
