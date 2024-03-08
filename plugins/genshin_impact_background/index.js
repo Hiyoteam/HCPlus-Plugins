@@ -353,7 +353,7 @@
       ]
     }
   ].map(e => e.list.map(u => ({ ...u, city: e.city }))).flat();
-  var host = "http://127.0.0.1/plugins/genshin_impact_background/";
+  var host = "https://plugins.hach.chat/plugins/genshin_impact_background/";
   var selected_people = localStorage['_gs_cache_name'] || 'hutao';
   var setPeople = (e) => {
     setImage(selected_people = e);
@@ -456,7 +456,7 @@
     // console.log('getimage', people);
     if (!people.find)
       people = people_list[0];
-    return await ToBase64(`${host}assset/${people.city.name}/${name}${mode == '0' ? '.png' : '.2.png'}`);
+    return await ToBase64(`${host}asset/${people.city.name}/${name}${mode == '0' ? '.png' : '.2.png'}`);
   }
   async function getPeopleImage(name, mode) {
     let cache = await useCache(name);
@@ -530,7 +530,7 @@
     container_obj = div;
 
     document.body.appendChild(div);
-    injectSelect('背景图片', people_list.map(e => [e.name, e.title]), (e) => {
+    injectSelect('Background Image', people_list.map(e => [e.name, e.title]), (e) => {
       let val = e.target.value;
       setPeople(val);
     }, (e) => {
