@@ -72,6 +72,9 @@
     <!-- MDUI JavaScript -->
     <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
     <script>
+        function isMobile(){
+            return window.innerWidth<768
+        }
         function aHref(url){
             window.location.href=url;
         }
@@ -84,8 +87,13 @@
                 let a=document.getElementsByClassName(`plugin-${details.id}`)[0]
                 a.querySelector(".mdui-list-item-title").innerText=details.name
                 let description=a.querySelector(".mdui-list-item-text")
-                description.innerText=details.description
+                let maxLength=300
+                if(isMobile()){
+                    maxLength=100
+                }
+                description.innerText = details.description.length > maxLength ? details.description.substring(0, maxLength) + "..." : details.description;
                 description.innerHTML+="<br>"
+
                 description.innerText+="By "+details.author
             })
         }
