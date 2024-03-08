@@ -1,5 +1,6 @@
 /*********************************************************************************************************** */
-const host = "https://plugins.hach.chat/plugins/im_theme/";
+
+const im_theme_host = "http://127.0.0.1/plugins/im_theme/";
 const __$ = (e) => document.querySelector(e);
 
 
@@ -39,6 +40,11 @@ function getI18n() {
   return __i18n[localStorage["i18n"] || "en-US"];
 }
 /************************************** functions ************************************************************** */
+function fix_send(e) {
+  // console.log(e, ws);
+  (window._send ?? window.send)(e);
+  // console.log(e, ws);
+}
 function injectcss(url, id) {
   var link = document.createElement("link");
   if (id) link.id = id;
@@ -89,7 +95,7 @@ function findXPath(STR_XPATH) {
 
   return xnodes;
 }
-function createOption(text, options, onchange = (e) => {}, init = (e) => e) {
+function createOption(text, options, onchange = (e) => { }, init = (e) => e) {
   let p = document.createElement("p");
   p.appendChild(
     ((e) =>
@@ -129,7 +135,7 @@ function getSidebarColor() {
 }
 function setIMTheme(t) {
   im_current_theme = t;
-  $id("im_theme").href = host + "assset/css/theme/" + t + ".css";
+  $id("im_theme").href = im_theme_host + "assset/css/theme/" + t + ".css";
   localStorageSet("im_theme", t);
 }
 function inject_checkbox() {
@@ -208,13 +214,15 @@ function inject_WebSocket() {
       return new Proxy(tmp, {
         // 获取值时的捕获器
         get: function (target, key) {
-          return target[key];
+          const origMethod = target[key];
+          return typeof origMethod === 'function' ? origMethod.bind(target) : origMethod;
         },
         // 设置值时的捕获器
         set: function (target, key, newValue) {
           if (key == "onopen" && hooked_onopen) {
-            target[key] = hook_onopen;
+            target[key] = window.hook_onopen;
           } else target[key] = newValue;
+          return true;
         },
       });
     },
@@ -263,23 +271,36 @@ function inject_prompt() {
 
     if (myNick && shouldConnect) {
       localStorageSet("my-nick", myNick);
-      _send({ cmd: "join", channel: channel, nick: myNick });
+      fix_send({ cmd: "join", channel: channel, nick: myNick });
       wasConnected = true;
       shouldAutoReconnect = true;
     } else {
       try {
         ws.close();
-      } catch {}
+      } catch { }
     }
   };
   ws.onopen = () => {
-    hooked_onopen = true;
+    if (!hooked_onopen)
+      hooked_onopen = true;
     inject_WebSocket();
     hook_onopen();
   };
 }
 function inject_alert() {
-  alert = (e) => createAlert("", e, () => {});
+  alert = (e) => createAlert("", e, () => { });
+}
+function hookFunction(hook, func) {
+  // console.log(window[hook], func);
+  var oldonload = window[hook];
+  if (typeof window[hook] != "function") {
+    window[hook] = func;
+  } else {
+    window[hook] = function () {
+      oldonload();
+      func();
+    };
+  }
 }
 /************************************************************************************************************/
 
@@ -289,10 +310,10 @@ function inject_alert() {
   "level.css",
   "hcpp_control_fix.css",
   "pop.css",
-].forEach((e) => injectcss(host + "assset/css/" + e));
-injectcss(host + `assset/css/theme/${im_current_theme}.css`, "im_theme");
-injectscript(host + "assset/js/bubble.js");
-injectscript(host + "assset/js/pop.js");
+].forEach((e) => injectcss(im_theme_host + "assset/css/" + e));
+injectcss(im_theme_host + `assset/css/theme/${im_current_theme}.css`, "im_theme");
+injectscript(im_theme_host + "assset/js/bubble.js");
+injectscript(im_theme_host + "assset/js/pop.js");
 setIMTheme(localStorage["im_theme"] ?? "jewel");
 if (myChannel == "") {
   ws = {};
@@ -315,7 +336,7 @@ function init_hooks() {
     raw_setScheme(e);
     setTimeout(
       () =>
-        (temp_color.innerHTML = `.dynamic_info_color {
+      (temp_color.innerHTML = `.dynamic_info_color {
     background:${getSidebarColor()};
   }`),
       100
@@ -369,4 +390,4 @@ function init_hooks() {
 function init() {
   init_hooks();
 }
-window.onload = () => init();
+hookFunction('onload', () => init());

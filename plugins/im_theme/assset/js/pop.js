@@ -10,7 +10,7 @@ const getUuid = () =>
     const v = c === "x" ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
-let doce = (e, j, ac = (e) => {}, p) =>
+let doce = (e, j, ac = (e) => { }, p) =>
   !!(p = document.createElement(e)) &&
   (!j || true) &&
   (!(p.className = j) || true) &&
@@ -41,10 +41,11 @@ function DialogEx() {
   let pop_mask = doce("div", "pop_mask");
   holder.appendChild(pop_mask);
   document.body.appendChild(holder);
-  console.log(holder);
+  //console.log(holder);
+  holder.focus();
   return { render: (e) => holder.appendChild(e), close };
 }
-function createAsk(title, content, callback = () => {}) {
+function createAsk(title, content, callback = () => { }) {
   let dialog = DialogEx();
   let _ = callback;
   callback = (e) => {
@@ -73,7 +74,7 @@ function createAsk(title, content, callback = () => {}) {
 
   dialog.render(d);
 }
-function createAlert(title, content, callback = () => {}) {
+function createAlert(title, content, callback = () => { }) {
   let dialog = DialogEx();
   let _ = callback;
   callback = (e) => {
@@ -97,8 +98,9 @@ function createAlert(title, content, callback = () => {}) {
   });
 
   dialog.render(d);
+
 }
-function createInput(title, content, callback = () => {}, value = "") {
+function createInput(title, content, callback = () => { }, value = "") {
   let dialog = DialogEx();
   let _ = callback;
   let val = value || "";
@@ -109,7 +111,7 @@ function createInput(title, content, callback = () => {}, value = "") {
       if (e.keyCode == 13) callback({ state: true, input: val });
     };
     e.oninput = (e) => (val = e.target.value);
-    e.autofocus = true;
+    e.focus();
   });
 
   callback = (e) => {
@@ -134,9 +136,12 @@ function createInput(title, content, callback = () => {}, value = "") {
     ],
   });
   dialog.render(d);
+  input.focus();
+  // console.log('input in createInput', input);
+
 }
 function MyDialog({ title, content, actions, onCloseButton }) {
-  console.log("mydialog", title, content, actions, onCloseButton);
+ // console.log("mydialog", title, content, actions, onCloseButton);
   let container = doce("div", "pop_container popIn"),
     pop_arrow = ["lf", "dlf", "rh", "drh"]
       .map((e) => doce("img", "pop_arrow " + e))
