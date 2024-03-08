@@ -14,8 +14,8 @@
   <body class="mdui-theme-layout-auto mdui-theme-accent-blue">
     <div class="mdui-appbar">
         <div class="mdui-toolbar mdui-color-theme">
-          <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#menu'}">
-            <i class="mdui-icon material-icons">menu</i>
+          <a href="javascript:;" class="mdui-btn mdui-btn-icon" onclick="aHref('/index.html')">
+            <i class="mdui-icon material-icons">arrow_back</i>
           </a>
           <a href="javascript:;" class="mdui-typo-headline">HC++ Plugins</a>
           <div class="mdui-toolbar-spacer"></div>
@@ -24,36 +24,7 @@
           </a>
         </div>
       </div>
-    <div class="mdui-drawer mdui-drawer-close" id="menu">
-        <div>
-            <div class="mdui-typo mdui-p-l-2">
-                <h1>HC++ Plugins</h1>
-                <p>Better Chatting Experience.</p>
-                <br>
-            </div>
-            <hr>
-            <ul class="mdui-list">
-                <a href="/">
-                    <li class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-content">Mainpage</div>
-                    <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
-                    </li>
-                </a>
-                <a href="/plugins.html">
-                    <li class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-content">Plugin List</div>
-                    <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
-                    </li>
-                </a>
-                <a href="/readme.html">
-                    <li class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-content">README</div>
-                    <i class="mdui-list-item-icon mdui-icon material-icons">information</i>
-                    </li>
-                </a>
-              </ul>
-        </div>
-    </div>
+    
     <div class="mdui-typo mdui-p-l-2">
         <h1>HC++ Plugin Requirements</h1>
         <p class="mdui-p-l-2">Thank you for developing more features for HC++! But in order for these plugins not to defeat the original purpose of creating our plugin system (to provide a better chat experience), we do have some requirements for the plugins.</p>
