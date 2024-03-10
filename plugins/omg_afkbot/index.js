@@ -59,9 +59,11 @@ function showAfK(dom,text) {
 }
 function runawa(arg) {
   let hcmsg = JSON.parse(arg.querySelector('p').getAttribute('data-raw'));
-  if (hcmsg.trip == "AAfFKK" && hcmsg.text.indexOf('==Trips==') !== -1) {
-    showAfK(arg,hcmsg.text)
-  }
+  try {
+    if (hcmsg.trip == "AAfFKK" && hcmsg.text.indexOf('==Trips==') !== -1) {
+      showAfK(arg,hcmsg.text)
+    }
+  } catch (err) {}
 }
 
 hook.register('after','pushmessage', (args) =>{
