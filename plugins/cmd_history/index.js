@@ -1,5 +1,5 @@
 ﻿let e = document.createElement("script")
-e.setAttribute("src", "https://plugins.hach.chat/plugins/cmd_history/pako.min.js")
+e.setAttribute("src", "https://plugins.hach.chat/lib/pako.min.js")
 e.setAttribute("type", "application/javascript");
 document.getElementsByTagName('head')[0].appendChild(e);
 var cnmsb = document.createElement('select');
