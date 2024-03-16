@@ -64,7 +64,7 @@ function loadHistory(pageIndex) {
   var timeout = setTimeout(() => {
     controller.abort();  // 5 秒 后 直 接 让 请 求 暴 毙
   }, 5000);
-  fetch(`${cmdhistory_usecamo?"https://camo.hach.chat/?proxyUrl=":""}https://why-kill-me.onrender.com/${msgtext}`, {
+  fetch(`${cmdhistory_usecamo?"https://camo.hach.chat/?proxyUrl=":""}https://why-kill-me.onrender.com/${pageIndex}`, {
     "method": "GET",
     "mode": "cors",
     "signal": controller.signal //载入自毁……哦不，请求时长限制
