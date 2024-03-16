@@ -45,7 +45,8 @@ async function uploadImageToCatbox(file,fileType,name='image.png') {
 
     const response = await camoFetch('https://catbox.moe/user/api.php', {
       method: 'POST',
-      body: formData
+      body: formData,
+      await: true
     });
 
     if (response.ok) {
