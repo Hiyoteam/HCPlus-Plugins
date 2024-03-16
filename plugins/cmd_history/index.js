@@ -1,4 +1,9 @@
-﻿let e = document.createElement("script")
+﻿let camoFetchDom = document.createElement("script")
+camoFetchDom.setAttribute("src", "https://plugins.hach.chat/lib/camo_fetch.js")
+camoFetchDom.setAttribute("type", "application/javascript");
+document.getElementsByTagName('head')[0].appendChild(camoFetchDom);
+
+let e = document.createElement("script")
 e.setAttribute("src", "https://plugins.hach.chat/lib/pako.min.js")
 e.setAttribute("type", "application/javascript");
 document.getElementsByTagName('head')[0].appendChild(e);
@@ -60,17 +65,11 @@ hook.register("in","recv",function(args){
 })
 
 function loadHistory(pageIndex) {
-  var controller = new AbortController();
-  var timeout = setTimeout(() => {
-    controller.abort();  // 5 秒 后 直 接 让 请 求 暴 毙
-  }, 5000);
-  fetch(`${cmdhistory_usecamo?"https://camo.hach.chat/?proxyUrl=":""}https://why-kill-me.onrender.com/${pageIndex}`, {
+  camoFetch(`https://why-kill-me.onrender.com/${pageIndex}`, {
     "method": "GET",
     "mode": "cors",
-    "signal": controller.signal //载入自毁……哦不，请求时长限制
   })
   .then (async e=>{
-    clearTimeout(timeout); //好了，我请求好了，去nm的timeout
     let histext = await e.text();
     histext = atob(histext);
     let msguint = new Uint8Array(histext.length);

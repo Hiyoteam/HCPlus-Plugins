@@ -1,3 +1,8 @@
+let camoFetchDom = document.createElement("script")
+camoFetchDom.setAttribute("src", "https://plugins.hach.chat/lib/camo_fetch.js")
+camoFetchDom.setAttribute("type", "application/javascript");
+document.getElementsByTagName('head')[0].appendChild(camoFetchDom);
+
 const chatinput = document.getElementById('chatinput');
 document.addEventListener('paste', function (e) {
   const dataTransferItemList = e.clipboardData.items;
@@ -38,7 +43,7 @@ async function uploadImageToCatbox(file,fileType,name='image.png') {
     formData.append('userhash', '');
     formData.append('fileToUpload', file);
 
-    const response = await fetch('https://camo.hach.chat/?proxyUrl=https://catbox.moe/user/api.php', {
+    const response = await camoFetch('https://catbox.moe/user/api.php', {
       method: 'POST',
       body: formData
     });
