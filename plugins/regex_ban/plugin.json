@@ -1,0 +1,8 @@
+{
+    "id":"regex_ban",
+    "name":"RegexBan",
+    "description":"Not showing the content that matches the regex!",
+    "author":"0x24a",
+    "contact":"admin@thz.cool"
+  }
+  
