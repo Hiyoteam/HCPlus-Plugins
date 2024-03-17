@@ -1,7 +1,7 @@
-let camoFetchDom = document.createElement("script")
-camoFetchDom.setAttribute("src", "https://plugins.hach.chat/lib/camo_fetch.js")
-camoFetchDom.setAttribute("type", "application/javascript");
-document.getElementsByTagName('head')[0].appendChild(camoFetchDom);
+let camoFetchDom_ = document.createElement("script")
+camoFetchDom_.setAttribute("src", "https://plugins.hach.chat/lib/camo_fetch.js")
+camoFetchDom_.setAttribute("type", "application/javascript");
+document.getElementsByTagName('head')[0].appendChild(camoFetchDom_);
 
 const chatinput = document.getElementById('chatinput');
 document.addEventListener('paste', function (e) {
