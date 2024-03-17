@@ -21,16 +21,17 @@
   return result;
 }
 function generateExpandableList(obj) {
+  let html = '';
   for (const key in obj) {
     html += `<details open><summary>${key}</summary>`;
-    html += '<details><summary>\/ nick</summary><ul>';
+    html += '<details style="margin-left:15px"><summary>nick</summary><ul>';
     obj[key].nick.forEach(nick => {
-      html += `<li>${nick}</li>`;
+      html += `<li style="margin-left:30px">${nick}</li>`;
     });
     html += '</ul></details>';
-    html += '<details><summary>\/ trip</summary><ul>';
+    html += '<details><summary style="margin-left:15px">trip</summary><ul>';
     obj[key].trip.forEach(trip => {
-      html += `<li>${trip}</li>`;
+      html += `<li style="margin-left:30px">${trip}</li>`;
     });
     html += '</ul></details>';
     html += '</ul></details>';
