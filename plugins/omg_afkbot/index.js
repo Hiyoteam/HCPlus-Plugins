@@ -21,9 +21,8 @@
   return result;
 }
 function generateExpandableList(obj) {
-  let html = '<details>';
   for (const key in obj) {
-    html += `<summary>${key}</summary>`;
+    html += `<details open><summary>${key}</summary>`;
     html += '<details><summary>\/ nick</summary><ul>';
     obj[key].nick.forEach(nick => {
       html += `<li>${nick}</li>`;
@@ -34,9 +33,8 @@ function generateExpandableList(obj) {
       html += `<li>${trip}</li>`;
     });
     html += '</ul></details>';
-    html += '</ul>';
+    html += '</ul></details>';
   }
-  html += '</details>';
   return html;
 }
 const ilove4n0n4me = (ovo) => { //夹带私货
