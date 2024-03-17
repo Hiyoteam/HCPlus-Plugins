@@ -26,7 +26,7 @@ function generateExpandableList(obj) {
     html += `<details open><summary>${key}</summary>`;
     html += '<details style="margin-left:15px"><summary>nick</summary><ul>';
     obj[key].nick.forEach(nick => {
-      html += `<li style="margin-left:30px">${nick}</li>`;
+      html += `<li style="margin-left:15px">${nick}</li>`;
     });
     html += '</ul></details>';
     html += '<details><summary style="margin-left:15px">trip</summary><ul>';
