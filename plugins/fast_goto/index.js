@@ -9,6 +9,7 @@
   ws.onclose = () => {};
   ws.close();
   join(args[0]);
+  history.pushState('null','','?' + args[0]);
   location.hash = myNick;
   myChannel = args[0];
 }
