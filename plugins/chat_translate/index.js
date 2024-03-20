@@ -5,6 +5,7 @@ document.getElementsByTagName('head')[0].appendChild(googletrDom);
 
 var tr = localStorage.getItem('tr')?JSON.parse(localStorage.getItem('tr')):{};
 function trSave() {
+  return false //还是不保存了，要不然用户无意中开启，worker就要出事
   localStorage.setItem('tr', JSON.stringify(tr))
 }
 hook.register('after', 'pushmessage', function(args){
