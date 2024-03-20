@@ -14,7 +14,8 @@ hook.register('after', 'pushmessage', function(args){
 async function tranDom(dom) {
   let mData = JSON.parse(dom.querySelector('p').getAttribute('data-raw'))
   if (!mData) return;
-  if (!tr || !(mData.cmd == "chat" || (mData.cmd == "info" && mData.type == "whisper") || mData.cmd == "emote")) return; //没开翻译，不翻，不是聊天消息，不翻
+  if (!(mData.cmd == "chat" || (mData.cmd == "info" && mData.type == "whisper") || mData.cmd == "emote")) return; //不是聊天消息，不翻
+  if (!tr.to || !tr.text) return; //没开翻译，不翻
   let waitTran = JSON.parse(dom.querySelector('p').getAttribute('data-raw')).text
   let isWhisper = (mData.cmd == "info" && mData.type == "whisper" && typeof mData.from == "string")?true:false
   let padText = isWhisper?waitTran.substring(0,12+mData.from.length):'';
