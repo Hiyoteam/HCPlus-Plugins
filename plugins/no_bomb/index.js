@@ -1,4 +1,4 @@
-ignoredHashs = [
+[
     "KoyM2CRVuYN9xra",
     "MmuPWsSvazGEt55",
     "wpJvdbXdyA5Wxsq",
@@ -341,4 +341,6 @@ ignoredHashs = [
     "nTK2PHZQQp2/zzW",
     "REVDocPutIVeOT4",
     "Nnw2jBWwbVhpDFR"
-]
+].forEach(function (hash){
+    ignoredHashs.push(hash);
+})
