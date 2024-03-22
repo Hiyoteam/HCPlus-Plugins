@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN" class="mdui-theme-auto">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <title>HC++ Plugins</title>
+  </head>
+  <body>
+    <mdui-top-app-bar style="position: relative;">
+        <mdui-button-icon icon="menu" onclick="let e=document.getElementsByClassName('side-drawer')[0];e.open=!e.open"></mdui-button-icon>
+        <mdui-top-app-bar-title>HC++ Plugins</mdui-top-app-bar-title>
+        <div style="flex-grow: 1"></div>
+        <mdui-button-icon icon="more_vert"></mdui-button-icon>
+      </mdui-top-app-bar>
+      <mdui-navigation-drawer close-on-overlay-click class="side-drawer">
+        <div style="padding-left: 16px;">
+          <h1>HC++ Plugins</h1>
+          <p>Better Chatting Experience.</p>
+        </div>
+          <mdui-list>
+            <mdui-list-item icon="home" end-icon="arrow_right" onclick="aHref('/plugins.html')">Mainpage</mdui-list-item>
+            <mdui-list-item icon="list" end-icon="arrow_right" onclick="aHref('https\:\/\/github.com/Hiyoteam/HCPlus-Plugins/pulls')">Plugin List</mdui-list-item>
+            <mdui-list-item icon="information" end-icon="arrow_right" onclick="aHref('/readme.html')">README</mdui-list-item>
+          </mdui-list>
+      </mdui-navigation-drawer>      
+      <div class="content" style="padding-left: 5%; padding-right: 5%;">
+        <h1>HC++ Plugins</h1>
+        <p>Better Chatting Experience.</p>
+        <br>
+        <mdui-divider></mdui-divider>
+        <br>
+        <mdui-button full-width onclick="aHref('/plugins.html')">Install plugin</mdui-button><br>
+        <mdui-button full-width onclick="aHref('https\:\/\/github.com/Hiyoteam/HCPlus-Plugins/pulls')">Publish plugin</mdui-button><br>
+        <mdui-button full-width onclick="aHref('/readme.html')">Read the document</mdui-button><br>
+      </div>
+      <mdui-bottom-app-bar hide="true"><mdui-button-icon icon='commit'></mdui-button-icon><span class="commit-message" style="float: right;"></p></mdui-bottom-app-bar>
+    <script>
+        mdui.setColorScheme('#39c5bb');
+        function aHref(url) {
+            window.location.href=url;
+        }
+        async function fetchLastPush(){
+            let request=await fetch("https://camo.hach.chat/?proxyUrl=https://api.github.com/repos/Hiyoteam/HCPlus-Plugins/commits/main",{cache: "no-store"})
+            let json=await request.json()
+            return json.commit
+        }
+        async function showCommitInfo(){
+            let commit=await fetchLastPush();
+            return `${commit.tree.sha.slice(0,8)} · ${commit.message}`
+        }
+        showCommitInfo().then(function(commit){
+            document.querySelector(".commit-message").parentElement.hide=false
+            document.querySelector(".commit-message").innerText+=commit.replaceAll("\n"," ")
+            setTimeout(() => {
+              document.querySelector(".commit-message").parentElement.hide=true
+            }, 3000);
+        })
+    </script>
+  </body>
+</html>
