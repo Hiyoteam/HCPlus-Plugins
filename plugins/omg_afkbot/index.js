@@ -60,7 +60,7 @@ function runawa(arg) {
   let hcmsg = JSON.parse(arg.querySelector('p').getAttribute('data-raw'));
   try {
     if (hcmsg.trip == "AAfFKK" && hcmsg.text.indexOf('==Trips==') !== -1) {
-      showAfK(arg,hcmsg.text)
+      showAfK(arg,hcmsg.cmd=="info"?hcmsg.text.substring(14+hcmsg.from.length):hcmsg.text)
     }
   } catch (err) {}
 }
