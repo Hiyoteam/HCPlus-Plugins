@@ -23,7 +23,7 @@
 function generateExpandableList(obj) {
   let html = '';
   for (const key in obj) {
-    html += `<details open><summary>${key}</summary>`;
+    html += `<details${obj.length<5?" open":""}><summary>${key}</summary>`;
     html += '<details style="margin-left:15px"><summary>nick</summary><ul>';
     obj[key].nick.forEach(nick => {
       html += `<li style="margin-left:15px">${nick}</li>`;
