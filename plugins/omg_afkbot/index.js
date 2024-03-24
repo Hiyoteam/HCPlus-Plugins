@@ -54,7 +54,9 @@ function showAfK(dom,text) {
       trip: ilove4n0n4me(text.split("\n")[1].substring(40).split(", "))
     }
   }
+  let lastAtBottom = isAtBottom()
   dom.querySelector('p').innerHTML = generateExpandableList(showinfo);
+  if (lastAtBottom) window.scrollTo(0, document.body.scrollHeight);
 }
 function runawa(arg) {
   let hcmsg = JSON.parse(arg.querySelector('p').getAttribute('data-raw'));
