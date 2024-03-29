@@ -24,7 +24,7 @@ function regexBanCheck(text){
 
 function regexBanHook(args){
     if(args.trip=="/REGEX/"){return args}
-    if(regexBanCheck(args.text)){
+    if(regexBanCheck(args[0].text)){
         return
     }
     return args
