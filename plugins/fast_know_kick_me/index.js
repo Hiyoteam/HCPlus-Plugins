@@ -1,8 +1,8 @@
 ﻿var checkString = false
 var joined = false
 hook.register('before','pushmessage', (args) =>{
-  if (args.cmd == "onlineSet") joined = true
-  if (args.cmd == "warn" && args.text == 'Unknown command: /y' && checkString) {
+  if (args[0].cmd == "onlineSet") joined = true
+  if (args[0].cmd == "warn" && args.text == 'Unknown command: /y' && checkString) {
     checkString = false
     return false;
   }
