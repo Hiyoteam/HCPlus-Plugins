@@ -9,7 +9,7 @@ hook.register('before','pushmessage', (args) =>{
 })
 setInterval(()=>{
   if (ws.readyState != 1 || checkString || !joined) {
-    joined = false;
+    if (ws.readyState != 1) joined = false;
     return;
   }
   checkString = true;
