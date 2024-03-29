@@ -2,7 +2,7 @@
 var joined = false
 hook.register('before','pushmessage', (args) =>{
   if (args[0].cmd == "onlineSet") joined = true
-  if (args[0].cmd == "warn" && args[0].text == 'Unknown command: /y' && checkString) {
+  if (args[0].cmd == "warn" && args[0].text == 'Unknown command: /' && checkString) {
     checkString = false
     return false;
   }
@@ -15,6 +15,6 @@ setInterval(()=>{
   checkString = true;
   ws.send(JSON.stringify({
     cmd: 'chat',
-    text: '/y'
+    text: '/'
   }))
 },3000)
