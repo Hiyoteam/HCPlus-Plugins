@@ -16,6 +16,7 @@
     "omg_afkbot",
     "regex_ban",
     "chat_translate",
-    "fast_know_kick_me"
+    "fast_know_kick_me",
+    "edit_msg"
   ]
 }
