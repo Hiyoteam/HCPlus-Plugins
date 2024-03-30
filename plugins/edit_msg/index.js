@@ -1,40 +1,34 @@
 ﻿var editMsgCustomId = 1
 var editMsgCustomIdRemoved = 0
-var editMsg = localStorage.getItem('editmsg') || false
 hook.register("in","send",function(args){
-    if (args[0].cmd === "chat" && (!args[0].text.startsWith("/") || args[0].text.startsWith("//"))){
+    if (args[0].cmd === "chat" && args[0].text.startsWith("///")){
+        args[0].text = args[0].text.substring(3)
         args[0].customId = editMsgCustomId.toString()
         editMsgCustomId += 1
     };
     return args;
 });
-hook.register('before','pushmessage', (args) =>{
-  if (args[0].cmd == "onlineSet" && editMsg) {
-    editMsg = false;
-    localStorage.setItem('editmsg',editMsg);
-    pushMessage({ nick: '!', text: 'Warning: Your editmsg has been disabled to avoid excessive server usage. If you need to reactivate it, please use `/editmsg on`' }); 
-  }
-})
 run.editmsg = (...args) => {
-  if (args[0] == "on" || args[0] == "off") {
-    editMsg = (args[0]=="on")?(true):((args[0] == "off")?(false):(editMsg));
-    pushMessage({ nick: '*', text: editMsg?'The message customId has been enabled, and now you can use `/editmsg [last message] [new content]` to edit the message':'Closed message customId' }); 
-    localStorage.setItem('editmsg',editMsg);
-    return;
-  }
   if (args[0] == "help") {
-    pushMessage({ nick: '*', text: `Help:
-\`/editmsg [on/off/clear/help/msgindex] <msgtext>\`
+    pushMessage({ nick: '*', text: `Edit Help:
+\`/editmsg [clear/help/msgindex] <msgtext>\`
 
 First parameter:
 \`help\` View this help list
-\`on\` Enable customId message logging
-\`off\` Disable customId message logging
 \`clear\` Clear customId message logging
 \`msgindex\` The Nth-to-last message is a customId message
 
 Second parameter:
-\`msgtext\` Edited message content, only available when the first parameter is msgindex` }); 
+\`msgtext\` Edited message content, only available when the first parameter is msgindex
+
+Send Can Edit (customId) Message:
+\`///[text]\`
+
+First parameter:
+\`text\` content
+` 
+
+}); 
     return;
   }
   if (args[0] == "clear") {
