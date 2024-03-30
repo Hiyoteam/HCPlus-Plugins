@@ -10,7 +10,9 @@ hook.register("in","send",function(args){
 });
 hook.register('before','pushmessage', (args) =>{
   if (args[0].cmd == "onlineSet" && editMsg) {
-    pushMessage({ nick: '!', text: 'Warning: You still have customId messaging enabled. Please turn it off to avoid unnecessary server usage: `/editmsg off`' }); 
+    editMsg = false;
+    localStorage.setItem('editmsg',editMsg);
+    pushMessage({ nick: '!', text: 'Warning: Your editmsg has been disabled to avoid excessive server usage. If you need to reactivate it, please use `/editmsg on`' }); 
   }
 })
 run.editmsg = (...args) => {
