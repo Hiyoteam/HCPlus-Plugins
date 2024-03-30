@@ -1,6 +1,6 @@
 ﻿var editMsgCustomId = 1
 var editMsgCustomIdRemoved = 0
-var editMsg = localStorage.getItem('editmsg') || true
+var editMsg = localStorage.getItem('editmsg') || false
 hook.register("in","send",function(args){
     if (args[0].cmd === "chat" && (!args[0].text.startsWith("/") || args[0].text.startsWith("//"))){
         args[0].customId = editMsgCustomId.toString()
@@ -8,6 +8,11 @@ hook.register("in","send",function(args){
     };
     return args;
 });
+hook.register('before','pushmessage', (args) =>{
+  if (args[0].cmd == "onlineSet" && editMsg) {
+    pushMessage({ nick: '!', text: 'Warning: You still have customId messaging enabled. Please turn it off to avoid unnecessary server usage: `/editmsg off`' }); 
+  }
+})
 run.editmsg = (...args) => {
   if (args[0] == "on" || args[0] == "off") {
     editMsg = (args[0]=="on")?(true):((args[0] == "off")?(false):(editMsg));
