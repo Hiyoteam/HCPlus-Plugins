@@ -2,7 +2,7 @@
 var joined = false;
 var checkSpeed = 2;
 hook.register('before','pushmessage', (args) =>{
-  if (args[0].cmd == "onlineSet") joined = true
+  joined = true
   if (args[0].cmd == "warn" && args[0].text == 'Unknown command: /' && checkString) {
     checkString = false;
     return false;
