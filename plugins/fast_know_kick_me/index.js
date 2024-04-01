@@ -1,4 +1,4 @@
-﻿funvar checkString = false;
+﻿var checkString = false;
 var joined = false;
 var checkSpeed = localStorage.getItem('checkSpeed') || 2;
 hook.register('before','pushmessage', (args) =>{
