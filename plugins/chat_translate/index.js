@@ -28,7 +28,7 @@ async function tranDom(dom) {
 }
 run.tran = (...args) => {
   if (args[0]) {
-    if (args[0]) {
+    if (args[0] != "off") {
       tr = {
              to: args[0],
              text: args[1]?args[1]:"auto"
@@ -48,7 +48,7 @@ run.tran = (...args) => {
   } else {
     pushMessage({
       nick: '*',
-      text: 'chatTranslate\n`/tran <toLanguage> <textLanguage>`\n notes: <optional> [required]\n* <toLanguage>\n    * The language to translate the content into. If you do not fill in this field, the translation option settings will be cancelled.\n* <textLanguage>\n    * The language of the content to be translated. If this item is not filled in, it will be automatically recognized.'
+      text: 'chatTranslate\n`/tran <toLanguage> <textLanguage>`\n notes: <optional> [required]\n* <toLanguage>\n    * The language to translate the content into. If you do not fill in this field, the translation option settings will be cancelled.\n* <textLanguage>\n    * The language of the content to be translated. If this item is not filled in, it will be automatically recognized.\n\nuse `/tran off` to off translation'
     })
   }
 }
