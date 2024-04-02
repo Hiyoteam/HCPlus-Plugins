@@ -1,6 +1,7 @@
 ﻿var checkString = false;
 var joined = false;
 var checkSpeed = localStorage.getItem('checkSpeed') || 2;
+checkSpeed = parseInt(checkSpeed)
 hook.register('before','pushmessage', (args) =>{
   joined = true
   if (args[0].cmd == "warn" && args[0].text == 'Unknown command: /' && checkString) {
