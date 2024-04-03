@@ -44,18 +44,24 @@ const ilove4n0n4me = (ovo) => { //夹带私货
 }
 function showAfK(dom,text) {
   let showinfo = {}
+  let shownicks = []
+  let showtrips = []
   if (text.indexOf("==Hash==") !== -1) {
     let moreTexts = text.split("\n") //length : 3
     moreTexts = moreTexts.map((moreText) => {return moreText.split(": ")[1]});
     showinfo = generateObject(moreTexts)
   } else {
+    let getnick = ilove4n0n4me(text.substring(42).split("\n")[0].split(", "));
+    let gettrip = ilove4n0n4me(text.split("\n")[1].substring(40).split(", "));
     showinfo[text.split(" ")[3].replace(/==/g,'').replace(":",'')] = {
-      nick: ilove4n0n4me(text.substring(42).split("\n")[0].split(", ")),
-      trip: ilove4n0n4me(text.split("\n")[1].substring(40).split(", "))
+      nick: getnick,
+      trip: gettrip
     }
+    getnick.forEach(shownick=>{shownicks.push(shownick)})
+    gettrip.forEach(showtrip=>{showtrips.push(showtrip)})
   }
   let lastAtBottom = isAtBottom()
-  dom.querySelector('p').innerHTML = generateExpandableList(showinfo);
+  dom.querySelector('p').innerHTML = `${generateExpandableList(showinfo)}\n${(text.indexOf("==Hash==") == -1)?"All <mark>Nicks</mark>: " + shownicks.join(", ") + "<br>All <mark>Trips</mark>: " + showtrips.join(", "):""}`
   if (lastAtBottom) window.scrollTo(0, document.body.scrollHeight);
 }
 function runawa(arg) {
