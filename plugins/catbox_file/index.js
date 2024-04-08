@@ -15,12 +15,11 @@ document.addEventListener('paste', function (e) {
   });
 });
 document.addEventListener('drop', function (e) {
-  e.preventDefault();
   const dt = e.dataTransfer;
   const files = dt.files;
 
   if (files.length === 0) return;
-
+  e.preventDefault();
   Array.from(files).forEach(file => {
     uploadImageToCatbox(file,file.type,file.name);
   });
