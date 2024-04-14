@@ -1,6 +1,6 @@
 /*********************************************************************************************************** */
 
-const im_theme_host = "http://plugins.hach.chat/plugins/im_theme/";
+const im_theme_host = "https://plugins.hach.chat/plugins/im_theme/";
 const __$ = (e) => document.querySelector(e);
 
 
