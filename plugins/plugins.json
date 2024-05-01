@@ -17,6 +17,7 @@
     "regex_ban",
     "chat_translate",
     "fast_know_kick_me",
-    "edit_msg"
+    "edit_msg",
+    "quit_hc"
   ]
 }
