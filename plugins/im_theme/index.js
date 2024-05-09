@@ -303,91 +303,94 @@ function hookFunction(hook, func) {
   }
 }
 /************************************************************************************************************/
-
-[
-  "bubble.css",
-  "control.css",
-  "level.css",
-  "hcpp_control_fix.css",
-  "pop.css",
-].forEach((e) => injectcss(im_theme_host + "assset/css/" + e));
-injectcss(im_theme_host + `assset/css/theme/${im_current_theme}.css`, "im_theme");
-injectscript(im_theme_host + "assset/js/bubble.js");
-injectscript(im_theme_host + "assset/js/pop.js");
-setIMTheme(localStorage["im_theme"] ?? "jewel");
-if (myChannel == "") {
-  ws = {};
-}
-function init_hooks() {
-  /****************************************************/
-  //inject first
-  pushMessage = hook_pushMessage;
-
-  if (localStorage["im_input"] == "true") {
-    inject_alert();
-    inject_prompt();
+async function async_init() {
+  [
+    "bubble.css",
+    "control.css",
+    "level.css",
+    "hcpp_control_fix.css",
+    "pop.css",
+  ].forEach(async (e) => await injectcss(im_theme_host + "assset/css/" + e));
+  await injectcss(im_theme_host + `assset/css/theme/${im_current_theme}.css`, "im_theme");
+  await injectscript(im_theme_host + "assset/js/bubble.js");
+  await injectscript(im_theme_host + "assset/js/pop.js");
+  setIMTheme(localStorage["im_theme"] ?? "jewel");
+  if (myChannel == "") {
+    ws = {};
   }
-  /***************************************************/
-  var temp_color = injectStyle(`.dynamic_info_color {
+  function init_hooks() {
+    /****************************************************/
+    //inject first
+    pushMessage = hook_pushMessage;
+
+    if (localStorage["im_input"] == "true") {
+      inject_alert();
+      inject_prompt();
+    }
+    /***************************************************/
+    var temp_color = injectStyle(`.dynamic_info_color {
     background:${getSidebarColor()};
   }`);
-  //hook theme to make sure the colors don't come out wrong
-  setScheme = (e) => {
-    raw_setScheme(e);
-    setTimeout(
-      () =>
-      (temp_color.innerHTML = `.dynamic_info_color {
+    //hook theme to make sure the colors don't come out wrong
+    setScheme = (e) => {
+      raw_setScheme(e);
+      setTimeout(
+        () =>
+        (temp_color.innerHTML = `.dynamic_info_color {
     background:${getSidebarColor()};
   }`),
-      100
+        100
+      );
+    };
+    /***************************************************/
+    //inject Select for sidebar
+    injectSelect(
+      getI18n().im_theme,
+      [
+        ["amber", "amber"],
+        ["bubblegum", "bubblegum"],
+        ["chelseagem", "chelseagem"],
+        ["jewel", "jewel"],
+        ["lime", "lime"],
+        ["pinescent", "pinescent"],
+        ["pink", "pink"],
+        ["strawberry", "strawberry"],
+      ],
+      (e) => {
+        setIMTheme(e.target.value);
+      },
+      (e) => {
+        e.value = im_current_theme;
+        return e;
+      }
     );
-  };
-  /***************************************************/
-  //inject Select for sidebar
-  injectSelect(
-    getI18n().im_theme,
-    [
-      ["amber", "amber"],
-      ["bubblegum", "bubblegum"],
-      ["chelseagem", "chelseagem"],
-      ["jewel", "jewel"],
-      ["lime", "lime"],
-      ["pinescent", "pinescent"],
-      ["pink", "pink"],
-      ["strawberry", "strawberry"],
-    ],
-    (e) => {
-      setIMTheme(e.target.value);
-    },
-    (e) => {
-      e.value = im_current_theme;
-      return e;
-    }
-  );
-  injectSelect(
-    getI18n().better_prompt_alert,
-    [
-      [getI18n().enable, "true"],
-      [getI18n().disable, "false"],
-    ],
-    (e) => {
-      localStorage["im_input"] = e.target.value;
-      pushMessage({ nick: "*", text: getI18n().update_input });
-    },
-    (e) => {
-      e.value = localStorage["im_input"] = localStorage["im_input"] || "true";
+    injectSelect(
+      getI18n().better_prompt_alert,
+      [
+        [getI18n().enable, "true"],
+        [getI18n().disable, "false"],
+      ],
+      (e) => {
+        localStorage["im_input"] = e.target.value;
+        pushMessage({ nick: "*", text: getI18n().update_input });
+      },
+      (e) => {
+        e.value = localStorage["im_input"] = localStorage["im_input"] || "true";
 
-      return e;
-    }
-  );
-  /***************************************************** */
-  // inject buttons and checkbox
-  inject_button();
-  inject_checkbox();
-  inject_chatinput();
-  /**************************************************** */
-}
-function init() {
-  init_hooks();
-}
-addEventListener('load', () => init());
+        return e;
+      }
+    );
+    /***************************************************** */
+    // inject buttons and checkbox
+    inject_button();
+    inject_checkbox();
+    inject_chatinput();
+    /**************************************************** */
+  }
+  function init() {
+    init_hooks();
+  }
+  addEventListener('load', () => init());
+  console.log('im theme work')
+};
+async_init();
