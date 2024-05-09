@@ -519,8 +519,7 @@
         localStorage["_gs_cache"] = "false";
         conf.cache_name = localStorage["_gs_cache_name"] = "";
         push_error(
-          `Loading the image for ${
-            find_people(name).name
+          `Loading the image for ${find_people(name).name
           } seems to have failed. Please try switching the CDN route.`
         );
       }
@@ -534,8 +533,7 @@
     if (!people.find) people = people_list[0];
 
     return await ToBase64(
-      `${img_host()}${people.city.name}/${name}${
-        mode == "0" ? ".png" : ".2.png"
+      `${img_host()}${people.city.name}/${name}${mode == "0" ? ".png" : ".2.png"
       }`
     );
   }
@@ -578,7 +576,7 @@
         break;
     }
   }
-  function createOption(text, options, onchange = (e) => {}, init = (e) => e) {
+  function createOption(text, options, onchange = (e) => { }, init = (e) => e) {
     let p = document.createElement("p");
     p.appendChild(
       ((e) =>
@@ -687,11 +685,11 @@
   });
   injectcss(host + "style.css");
   // console.log(people_list);
-  hookFunction("onload", () => {
+  addEventListener("load", () => {
     init();
     setImage(selected_people);
     setOpacity(opacity);
     console.log(cdn_host);
   });
-  hookFunction("onresize", () => setImage(selected_people));
+  addEventListener("onresize", () => setImage(selected_people));
 })();
