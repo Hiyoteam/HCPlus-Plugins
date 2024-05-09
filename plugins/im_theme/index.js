@@ -390,4 +390,4 @@ function init_hooks() {
 function init() {
   init_hooks();
 }
-hookFunction('onload', () => init());
+addEventListener('load', () => init());
