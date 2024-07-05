@@ -6,6 +6,7 @@
     "cmd_history",
     "rain_render",
     "no_bomb",
+    "omg_afkbot",
     "im_theme",
     "plugins_manager",
     "i18n_extension",
@@ -17,6 +18,6 @@
     "chat_translate",
     "fast_know_kick_me",
     "edit_msg",
-    "quit_hc"
+    "quit_hc",
   ]
 }
