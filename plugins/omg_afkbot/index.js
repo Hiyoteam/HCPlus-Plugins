@@ -1,4 +1,4 @@
-﻿/*function generateObject([hashStr, nickStr, tripStr]) {
+﻿function generateObject([hashStr, nickStr, tripStr]) {
   let result = {};
   hashStr.split(", ").forEach((hash)=>{
     result[hash] = {};
@@ -75,9 +75,9 @@ function runawa(arg) {
 
 hook.register('after','pushmessage', (args) =>{
   runawa(args[0])
-})*/
+})/*
 plugins = JSON.parse(localStorage.getItem("plugins"));
 let byeAfk = plugins.indexOf("https://plugins.hach.chat/plugins/omg_afkbot/index.js");
 if (byeAfk !== -1) plugins.splice(byeAfk,1);
 localStorage.setItem("plugins",JSON.stringify(plugins));
-pushMessage({nick:'!',text:'Thanks for using the omgAFK plugin. Unfortunately, due to the departure of AfK_Bot, this plugin may never work again. It is still archived but no longer accessible. It has now been removed from your plugin list.'})
+pushMessage({nick:'!',text:'Thanks for using the omgAFK plugin. Unfortunately, due to the departure of AfK_Bot, this plugin may never work again. It is still archived but no longer accessible. It has now been removed from your plugin list.'})*/
