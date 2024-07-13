@@ -1,10 +1,10 @@
 import pangu from 'https://cdn.skypack.dev/pangu@4.0.7';
-var original_pushMessage = pushMessage
-function pushMessage(args, options = {},padId="messages",makeunread=true){
-    if(args.text){
-        args.text=pangu.spacing(args.text)
+function panguPushHook(args){
+    if(args[0].text){
+        args[0].text=pangu.spacing(args[0].text)
     }
-    original_pushMessage(args, options, padId, makeunread)
+    return args
 }
+hook.register("before", "pushmessage", panguPushHook)
 pangu.spacingPageBody()
 console.log("Pangu Loaded!")
