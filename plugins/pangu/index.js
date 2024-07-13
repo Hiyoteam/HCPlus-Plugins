@@ -1,0 +1,5 @@
+let pangu_inject = document.createElement("script")
+pangu_inject.setAttribute("type", "module")
+pangu_inject.setAttribute("src", "https://plugins.hach.chat/plugins/pangu/pangu-module.js")
+document.head.appendChild(pangu_inject)
+console.log("Pangu Injected!")
