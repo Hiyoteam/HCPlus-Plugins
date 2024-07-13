@@ -6,5 +6,5 @@ function pushMessage(args, options = {},padId="messages",makeunread=true){
     }
     original_pushMessage(args, options, padId, makeunread)
 }
-pangu.autoSpacingPage()
+pangu.spacingPageBody()
 console.log("Pangu Loaded!")
