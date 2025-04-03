@@ -48,7 +48,7 @@ let historybot = ""
 hook.register("in","recv",function(args){
   if (args[0].cmd === "onlineSet") {
     setTimeout(()=>{
-      historybot = users_.find(e=>{return e.trip=="DogsLU"}).nick
+      historybot = users_.find(e=>{return e.trip=="JxQE/x"})?.nick
       if (historybot) {
         ws.send(JSON.stringify({cmd:'whisper',nick:historybot,text:'g ' + hs.value}))
       } // else pushMessage({nick:'!',text:'This channel has no HistoryBot, history messages cannot be displayed.'})
