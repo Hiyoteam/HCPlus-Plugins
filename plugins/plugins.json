@@ -20,6 +20,7 @@
     "edit_msg",
     "quit_hc",
     "pangu",
-    "hc_replay"
+    "hc_replay",
+    "captcha-solution"
   ]
 }
