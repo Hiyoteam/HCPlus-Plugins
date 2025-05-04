@@ -41,7 +41,7 @@ hook.register("in", "recv", function (args) {
               insertAtCursor(e.result);
             }
           })
-          .error((e) => {
+          .catch((e) => {
             pushMessage({
               nick: "!",
               trip: "CAPTCHA",
@@ -49,14 +49,13 @@ hook.register("in", "recv", function (args) {
             });
           });
       })
-      .error((e) => {
+      .catch((e) => {
         pushMessage({
           nick: "!",
           trip: "CAPTCHA",
           text: `Failed to solve captcha: Failed to send request`,
         });
       });
-    return args;
   }
   return args;
 });
