@@ -41,7 +41,7 @@ var getTableList = async(showInfo=false) => {
   let table = document.createElement('table');
   let Zerror = false
   table.style.margin = "0";
-  fetch("https://plugins.hach.chat/plugins/plugins.json", {
+  fetch("https://plugins.hach.chat/plugins/index.json", {
     "method": "GET",
     "mode": "cors"
   })
