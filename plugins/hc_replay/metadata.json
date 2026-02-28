@@ -2,7 +2,7 @@
   "id":"hc_replay",
   "name":"HCReplay",
   "description":"Adds a /replay Command to create HCReplay url.",
-  "author":"cmd1152",
-  "contact":"cmd1152__@Discord",
+  "author":"nwx",
+  "contact":"whrrrami@Discord",
   "material_icon": "replay"
 }
