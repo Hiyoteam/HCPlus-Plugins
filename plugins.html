@@ -169,7 +169,9 @@
                 } catch (e) {
                     mdui.alert({
                         headline: "Failed to load plugin index",
-                        text: "An error occurred while loading the plugin index. Please try again later or check your internet connection.",
+                        description: "An error occurred while loading the plugin index. Please try again later or check your internet connection.",
+                        confirmText: "Refresh",
+                        onConfirm: (e) => {location.reload();},
                     });
                 }
                 document.getElementById("loadingContainer").style.display =
