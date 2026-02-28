@@ -1,61 +1,156 @@
 <!doctype html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
-    <meta name="renderer" content="webkit"/>
-    <meta name="force-rendering" content="webkit"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="description" content="For Better Chatting Experience."/>
-    <!-- MDUI CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"/>
-    <title>HC++ Plugins</title>
-  </head>
-  <body class="mdui-theme-layout-auto mdui-theme-accent-blue">
-    <div class="mdui-appbar">
-        <div class="mdui-toolbar mdui-color-theme">
-          <a href="javascript:;" class="mdui-btn mdui-btn-icon" onclick="aHref('/index.html')">
-            <i class="mdui-icon material-icons">arrow_back</i>
-          </a>
-          <a href="javascript:;" class="mdui-typo-headline">HC++ Plugins</a>
-          <div class="mdui-toolbar-spacer"></div>
-          <a href="javascript:;" onclick="document.location.reload();" class="mdui-btn mdui-btn-icon">
-            <i class="mdui-icon material-icons">refresh</i>
-          </a>
-        </div>
-      </div>
-    
-    <div class="mdui-typo mdui-p-l-2">
-        <h1>HC++ Plugin Requirements</h1>
-        <p class="mdui-p-l-2">Thank you for developing more features for HC++! But in order for these plugins not to defeat the original purpose of creating our plugin system (to provide a better chat experience), we do have some requirements for the plugins.</p>
-        <div class="mdui-p-l-2">
-            <h3>1. Not a malicious plugin.</h3>
-            <p class="mdui-p-l-2">As stated above, plugins are meant to provide users with a better chat experience, but harmful plugins will undoubtedly not fulfill that condition. It is to avoid harmful plugins that we have created this plugin marketplace with an audit system.</p>
-            <h3>2. Negatively targeted plugins.</h3>
-            <p class="mdui-p-l-2">Negative targeting plugins refer to negative plugins that are created to target someone (e.g. a user who installs this plugin will automatically send spamming messages to someone, etc.), and such plugins do not benefit the community.</p>
-            <h3>3. SFW (Safe-For-Work).</h3>
-            <p class="mdui-p-l-2">We want to maintain a certain level of formality here, so NSFW contents are not allowed.</p>
-            <h3>4. No code obfuscation.</h3>
-            <p class="mdui-p-l-2">To keep the review efficient and accurate, please do not code obfuscate your plugin.</p>
-            <h3>5. No plugins that violates the law.</h3>
-            <p class="mdui-p-l-2">It is illegal to use code that violates the law, and we do not allow such code to be used in our plugin system.</p>
-            <h3>6. Accurate description.</h3>
-            <p class="mdui-p-l-2">Please write an accurate description for your plugin and we will also review the plugin to see if it does this and <b>only</b> this.</p>
-            <h3>7. No plugins that violates the privacy.</h3>
-            <p class="mdui-p-l-2">It is illegal to use code that violates the privacy, and we do not allow such code to be used in our plugin system.</p>
-        </div>
-        <br>
-        <hr>
-        <br>
-        <p>If you are happy to follow the above rules, then feel free to <a href="https://github.com/Hiyoteam/HCPlus-Plugins/pulls">publish your plugin</a>!</p>
-    </div>
+<html lang="en" class="mdui-theme-auto">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no"
+        />
+        <meta name="renderer" content="webkit" />
+        <meta name="description" content="Plugin index for HC++." />
 
-    <!-- MDUI JavaScript -->
-    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
-    <script>
-        function aHref(url) {
-            window.location.href=url;
-        }
-    </script>
-  </body>
+        <link rel="stylesheet" href="/lib/mdui_2.1.4/mdui.css" />
+        <link href="/lib/material_icons/material_icons.css" rel="stylesheet" />
+        <script src="/lib/mdui_2.1.4/mdui.global.js"></script>
+        <title>HC++ Plugins</title>
+    </head>
+    <body>
+        <mdui-top-app-bar style="position: relative">
+            <mdui-button-icon icon="arrow_back" href="/"></mdui-button-icon>
+            <mdui-top-app-bar-title>HC++ Plugins</mdui-top-app-bar-title>
+            <div style="flex-grow: 1"></div>
+            <mdui-tooltip placement="bottom-left" content="Github Repo">
+                <mdui-button-icon
+                    icon="code"
+                    href="https://github.com/Hiyoteam/HCPlus-Plugins"
+                ></mdui-button-icon>
+            </mdui-tooltip>
+        </mdui-top-app-bar>
+        <div
+            class="content"
+            style="padding-left: 8%; padding-right: 8%; padding-top: 2%"
+        >
+            <div style="max-width: 95%; padding-left: 2.5%">
+                <h1>HC++ Plugin Requirements</h1>
+                <p>
+                    Thank you for developing more features for HC++! But in
+                    order for these plugins not to defeat the original purpose
+                    of creating our plugin system (to provide a better chat
+                    experience), we do have some requirements for the plugins.
+                </p>
+                <br />
+                <div>
+                    <h3>1. Not a malicious plugin.</h3>
+                    <p style="padding-left: 1.5%">
+                        As stated above, plugins are meant to provide users with
+                        a better chat experience, but harmful plugins will
+                        undoubtedly not fulfill that condition. It is to avoid
+                        harmful plugins that we have created this plugin
+                        marketplace with an audit system.
+                    </p>
+                    <h3>2. Negatively targeted plugins.</h3>
+                    <p style="padding-left: 1.5%">
+                        Negative targeting plugins refer to negative plugins
+                        that are created to target someone (e.g. a user who
+                        installs this plugin will automatically send spamming
+                        messages to someone, etc.), and such plugins do not
+                        benefit the community.
+                    </p>
+                    <h3>3. SFW (Safe-For-Work).</h3>
+                    <p style="padding-left: 1.5%">
+                        We want to maintain a certain level of formality here,
+                        so NSFW contents are not allowed.
+                    </p>
+                    <h3>4. No code obfuscation.</h3>
+                    <p style="padding-left: 1.5%">
+                        To keep the review efficient and accurate, please do not
+                        code obfuscate your plugin.
+                    </p>
+                    <h3>5. No plugins that violates the law.</h3>
+                    <p style="padding-left: 1.5%">
+                        It is illegal to use code that violates the law, and we
+                        do not allow such code to be used in our plugin system.
+                    </p>
+                    <h3>6. Accurate description.</h3>
+                    <p style="padding-left: 1.5%">
+                        Please write an accurate description for your plugin and
+                        we will also review the plugin to see if it does this
+                        and <b>only</b> this.
+                    </p>
+                    <h3>7. No plugins that violates the privacy.</h3>
+                    <p style="padding-left: 1.5%">
+                        We do not allow such code that violates privacy to be
+                        used in our plugin system.
+                    </p>
+                    <br />
+                    <div class="mdui-prose">
+                        <p>
+                            If you are happy to follow the above rules, then
+                            feel free to
+                            <a
+                                href="https://github.com/Hiyoteam/HCPlus-Plugins/pulls"
+                                >publish your plugin</a
+                            >!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+            <mdui-divider></mdui-divider>
+            <br />
+            <div
+                style="
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                "
+            >
+                <mdui-icon
+                    name="commit"
+                    style="
+                        color: rgb(var(--mdui-color-outline));
+                        height: 1em;
+                        width: 1em;
+                    "
+                ></mdui-icon>
+                &nbsp;
+                <span
+                    class="commit-message"
+                    style="color: rgb(var(--mdui-color-outline))"
+                    >Fetching commit details...</span
+                >
+            </div>
+        </div>
+        <br />
+        <script>
+            mdui.setColorScheme("#39c5bb");
+            async function fetchLastPush() {
+                try {
+                    let request = await fetch(
+                        "https://api.github.com/repos/Hiyoteam/HCPlus-Plugins/commits/main",
+                        { cache: "no-store" },
+                    );
+                    let json = await request.json();
+                    return json.commit;
+                } catch (e) {
+                    return null;
+                }
+            }
+            async function showCommitInfo() {
+                let commit = await fetchLastPush();
+                if (commit != null) {
+                    return `${commit.tree.sha.slice(0, 8)} · ${commit.message}`;
+                } else {
+                    return "Failed to fetch commit message";
+                }
+            }
+            showCommitInfo().then(function (commit) {
+                document.querySelector(".commit-message").parentElement.hide =
+                    false;
+                document.querySelector(".commit-message").innerText =
+                    commit.replaceAll("\n", " ");
+            });
+        </script>
+    </body>
 </html>

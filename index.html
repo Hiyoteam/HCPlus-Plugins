@@ -1,103 +1,121 @@
 <!doctype html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
-    <meta name="renderer" content="webkit"/>
-    <meta name="force-rendering" content="webkit"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="description" content="For Better Chatting Experience."/>
-    <!-- MDUI CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"/>
-    <title>HC++ Plugins</title>
-  </head>
-  <body class="mdui-theme-layout-auto mdui-theme-accent-blue" style="position: relative; min-height: 100vh; margin: 0;">
-    <div class="mdui-appbar">
-        <div class="mdui-toolbar mdui-color-theme">
-          <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#menu'}">
-            <i class="mdui-icon material-icons">menu</i>
-          </a>
-          <a href="javascript:;" class="mdui-typo-headline">HC++ Plugins</a>
-          <div class="mdui-toolbar-spacer"></div>
-          <a href="javascript:;" onclick="document.location.reload();" class="mdui-btn mdui-btn-icon">
-            <i class="mdui-icon material-icons">refresh</i>
-          </a>
-        </div>
-      </div>
-    <div class="mdui-drawer mdui-drawer-close" id="menu">
-        <div>
-            <div class="mdui-typo mdui-p-l-2">
+<html lang="en" class="mdui-theme-auto">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no"
+        />
+        <meta name="renderer" content="webkit" />
+        <meta name="description" content="Plugin index for HC++." />
+
+        <link rel="stylesheet" href="/lib/mdui_2.1.4/mdui.css" />
+        <link href="/lib/material_icons/material_icons.css" rel="stylesheet" />
+        <script src="/lib/mdui_2.1.4/mdui.global.js"></script>
+        <title>HC++ Plugins</title>
+    </head>
+    <body>
+        <mdui-top-app-bar style="position: relative">
+            <mdui-icon
+                name="device_hub"
+                style="margin: 8px; padding-right: 4px"
+            ></mdui-icon>
+            <mdui-top-app-bar-title>HC++ Plugins</mdui-top-app-bar-title>
+            <div style="flex-grow: 1"></div>
+            <mdui-tooltip placement="bottom-left" content="Github Repo">
+                <mdui-button-icon
+                    icon="code"
+                    href="https://github.com/Hiyoteam/HCPlus-Plugins"
+                ></mdui-button-icon>
+            </mdui-tooltip>
+        </mdui-top-app-bar>
+        <div
+            class="content"
+            style="padding-left: 8%; padding-right: 8%; padding-top: 2%"
+        >
+            <div style="max-width: 95%; padding-left: 2.5%">
                 <h1>HC++ Plugins</h1>
                 <p>Better Chatting Experience.</p>
-                <br>
             </div>
-            <hr>
-            <ul class="mdui-list">
-                <a href="/">
-                    <li class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-content">Mainpage</div>
-                    <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
-                    </li>
-                </a>
-                <a href="/plugins.html">
-                    <li class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-content">Plugin List</div>
-                    <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
-                    </li>
-                </a>
-                <a href="/readme.html">
-                    <li class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-content">README</div>
-                    <i class="mdui-list-item-icon mdui-icon material-icons">information</i>
-                    </li>
-                </a>
-              </ul>
+            <br />
+            <mdui-divider></mdui-divider>
+            <br /><br />
+            <div style="max-width: 95%; padding-left: 2.5%">
+                <mdui-button
+                    full-width
+                    href="/plugins.html"
+                    icon="install_desktop"
+                    >Install plugin</mdui-button
+                ><br />
+                <mdui-button
+                    full-width
+                    href="https://github.com/Hiyoteam/HCPlus-Plugins/pulls"
+                    icon="publish"
+                    >Publish plugin</mdui-button
+                ><br />
+                <mdui-button
+                    full-width
+                    href="/readme.html"
+                    icon="insert_drive_file"
+                    >Read the document</mdui-button
+                ><br />
+            </div>
+            <br /><br />
+            <mdui-divider></mdui-divider>
+            <br />
+            <div
+                style="
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                "
+            >
+                <mdui-icon
+                    name="commit"
+                    style="
+                        color: rgb(var(--mdui-color-outline));
+                        height: 1em;
+                        width: 1em;
+                    "
+                ></mdui-icon>
+                &nbsp;
+                <span
+                    class="commit-message"
+                    style="color: rgb(var(--mdui-color-outline))"
+                    >Fetching commit details...</span
+                >
+            </div>
         </div>
-    </div>
-    <div class="mdui-typo mdui-p-l-2">
-        <div style="text-align: center;">
-            <h1>HC++ Plugins</h1>
-            <p>Better Chatting Experience.</p>
-        </div>
-        <br><br><br>
-        <hr>
-        <h3 style="text-align: center;">What are you going to do?</h3>
         <br>
-        <div class="mdui-container">
-            <div class="mdui-col-xs-12 mdui-col-md-4 mdui-p-u-2" onclick="aHref('/plugins.html')">
-                <button class="mdui-btn mdui-ripple mdui-center mdui-btn-raised mdui-btn-block">Install Plugin</button>
-            </div>
-            <div class="mdui-col-xs-12 mdui-col-md-4 mdui-p-u-2" onclick="aHref('https\:\/\/github.com/Hiyoteam/HCPlus-Plugins/pulls')">
-                <button class="mdui-btn mdui-ripple mdui-center mdui-btn-raised mdui-btn-block">Publish Plugin</button>
-            </div>
-            <div class="mdui-col-xs-12 mdui-col-md-4 mdui-p-u-2" onclick="aHref('/readme.html')">
-                <button class="mdui-btn mdui-ripple mdui-center mdui-btn-raised mdui-btn-block">Read The Document</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MDUI JavaScript -->
-    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
-    <script>
-        function aHref(url) {
-            window.location.href=url;
-        }
-        async function fetchLastPush(){
-            let request=await fetch("https://camo.hach.chat/?proxyUrl=https://api.github.com/repos/Hiyoteam/HCPlus-Plugins/commits/main",{cache: "no-store"})
-            let json=await request.json()
-            return json.commit
-        }
-        async function showCommitInfo(){
-            let commit=await fetchLastPush();
-            return `${commit.tree.sha.slice(0,8)} · ${commit.message}`
-        }
-        showCommitInfo().then(function(commit){
-            document.querySelector(".commit-message").innerText=commit
-        })
-
-    </script>
-    <footer>
-        <p style="text-align: center; bottom: 0; position: absolute; width: 100%; opacity: 20%;" class="commit-message">Loading commit message...</p>
-    </footer>
-  </body>
+        <script>
+            mdui.setColorScheme("#39c5bb");
+            async function fetchLastPush() {
+                try {
+                    let request = await fetch(
+                        "https://api.github.com/repos/Hiyoteam/HCPlus-Plugins/commits/main",
+                        { cache: "no-store" },
+                    );
+                    let json = await request.json();
+                    return json.commit;
+                } catch (e) {
+                    return null;
+                }
+            }
+            async function showCommitInfo() {
+                let commit = await fetchLastPush();
+                if (commit != null) {
+                    return `${commit.tree.sha.slice(0, 8)} · ${commit.message}`;
+                } else {
+                    return "Failed to fetch commit message";
+                }
+            }
+            showCommitInfo().then(function (commit) {
+                document.querySelector(".commit-message").parentElement.hide =
+                    false;
+                document.querySelector(".commit-message").innerText =
+                    commit.replaceAll("\n", " ");
+            });
+        </script>
+    </body>
 </html>

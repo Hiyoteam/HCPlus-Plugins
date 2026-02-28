@@ -1,237 +1,260 @@
 <!doctype html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
-    <meta name="renderer" content="webkit"/>
-    <meta name="force-rendering" content="webkit"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="description" content="For Better Chatting Experience."/>
-    <!-- MDUI CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"/>
-    <title>HC++ Plugins</title>
-  </head>
-  <body class="mdui-theme-layout-auto mdui-theme-accent-blue">
-    <div class="mdui-appbar">
-        <div class="mdui-toolbar mdui-color-theme">
-          <a href="javascript:;" class="mdui-btn mdui-btn-icon" onclick="aHref('/plugins.html')">
-            <i class="mdui-icon material-icons">arrow_back</i>
-          </a>
-          <a href="javascript:;" class="mdui-typo-headline">HC++ Plugins</a>
-          <div class="mdui-toolbar-spacer"></div>
-          <a href="javascript:;" onclick="document.location.reload();" class="mdui-btn mdui-btn-icon">
-            <i class="mdui-icon material-icons">refresh</i>
-          </a>
-        </div>
-      </div>
+<html lang="en" class="mdui-theme-auto">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no"
+        />
+        <meta name="renderer" content="webkit" />
+        <meta name="description" content="Plugin index for HC++." />
 
-    <div class="mdui-typo mdui-p-l-2">
-        <div id="plugins-progress">
-            <h4>Fetching Plugin Detail...</h4>
-            <div class="mdui-progress">
-                <div class="mdui-progress-indeterminate"></div>
+        <link rel="stylesheet" href="/lib/mdui_2.1.4/mdui.css" />
+        <link href="/lib/material_icons/material_icons.css" rel="stylesheet" />
+        <script src="/lib/mdui_2.1.4/mdui.global.js"></script>
+        <title>Plugin List - HC++ Plugins</title>
+    </head>
+    <body>
+        <mdui-top-app-bar style="position: relative">
+            <mdui-button-icon
+                icon="arrow_back"
+                href="/plugins.html"
+            ></mdui-button-icon>
+            <mdui-top-app-bar-title>HC++ Plugins</mdui-top-app-bar-title>
+            <div style="flex-grow: 1"></div>
+            <mdui-tooltip placement="bottom-left" content="Github Repo">
+                <mdui-button-icon
+                    icon="code"
+                    href="https://github.com/Hiyoteam/HCPlus-Plugins"
+                ></mdui-button-icon>
+            </mdui-tooltip>
+        </mdui-top-app-bar>
+        <div
+            class="content"
+            style="padding-left: 8%; padding-right: 8%; padding-top: 2%"
+        >
+            <div style="max-width: 95%; padding-left: 2.5%">
+                <div id="loadingContainer">
+                    <h1>
+                        <mdui-icon name="extension"></mdui-icon>&nbsp;<span
+                            id="pluginId"
+                            >plugin_id</span
+                        >
+                    </h1>
+                    <mdui-linear-progress></mdui-linear-progress><br /><br />
+                    <center>Fetching plugin metadata...</center>
+                </div>
+                <div id="pluginMetadata" style="display: none">
+                    <h1>
+                        <mdui-icon
+                            name="extension"
+                            id="pluginMetadataIcon"
+                        ></mdui-icon
+                        >&nbsp;<span id="pluginMetadataTitle"
+                            >Plugin title</span
+                        >
+                    </h1>
+                    <p id="pluginMetadataDescription">Plugin description</p>
+                    <br />
+                    <p style="color: rgb(var(--mdui-color-outline))">
+                        By
+                        <span id="pluginMetadataAuthor">Author Name</span>
+                        (<span id="pluginMetadataContact"
+                            >someone@example.com</span
+                        >)
+                    </p>
+                    <br />
+                    <mdui-divider></mdui-divider>
+                    <br />
+                    <h3>Installation command</h3>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            gap: 16px;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <mdui-button
+                            icon="content_copy"
+                            id="pluginMetadataButtonInstall"
+                            >Copy</mdui-button
+                        >
+                        <code
+                            style="overflow-wrap: anywhere; white-space: normal"
+                            >/addplugin https://plugins.hach.chat/plugins/<span
+                                id="pluginMetadataNameInstall"
+                                >test</span
+                            >/index.js</code
+                        >
+                    </div>
+                    <br />
+                    <h3>Uninstallation command</h3>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            gap: 16px;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <mdui-button
+                            icon="content_copy"
+                            id="pluginMetadataButtonUninstall"
+                            >Copy</mdui-button
+                        >
+                        <code
+                            style="overflow-wrap: anywhere; white-space: normal"
+                            >/removeplugin
+                            https://plugins.hach.chat/plugins/<span
+                                id="pluginMetadataNameUninstall"
+                                >test</span
+                            >/index.js</code
+                        >
+                    </div>
+                    <br />
+                </div>
             </div>
+            <br /><br />
+            <mdui-divider></mdui-divider>
+            <br />
+            <div
+                style="
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                "
+            >
+                <mdui-icon
+                    name="commit"
+                    style="
+                        color: rgb(var(--mdui-color-outline));
+                        height: 1em;
+                        width: 1em;
+                    "
+                ></mdui-icon>
+                &nbsp;
+                <span
+                    class="commit-message"
+                    style="color: rgb(var(--mdui-color-outline))"
+                    >Fetching commit details...</span
+                >
+            </div>
+            <br />
         </div>
-    </div>
-    
-    <!-- MDUI JavaScript -->
-    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
-    <script>
-        function aHref(url){
-            window.location.href=url;
-        }
-        function getText(e){
-            return e.text()
-        }
-        function updateDistroField() {
-        var select = document.querySelector('.mdui-select');
-        var textfield = document.getElementById('custom-domain');
-        if (select.value == 'custom') {
-            textfield.style.display = 'block';
-        } else {
-            textfield.style.display = 'none';
-        }
-    }
-    function copyToClipboard(text) {
-        var textArea = document.createElement("textarea");
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-    }
-    function generateCommand() {
-        var command = "/addplugin "+document.location.protocol + '//' + document.location.host + '/plugins/' + document.location.hash.slice(1) + '/index.js';
-        copyToClipboard(command);
-        mdui.dialog({
-            title: 'Command Copied',
-            content: 'Paste it into your client\'s chat input box and refresh to install the plugin.<br>If you see "Unknown command: /addplugin", please make sure you are using the latest version of HC++.',
-        })
-    }
-    function generateUninstall(){
-        var distro = document.querySelector('.mdui-select').value;
-        if (distro == 'none') {
-            mdui.alert('Please choose a distro.');
-            return;
-        }
-        var domain = document.getElementById('custom-domain').querySelector('input').value;
-        if (distro == 'custom') {
-            distro = domain;
-            // validate domain(not url)
-            if (!/^[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$/.test(distro)) {
-                mdui.alert('Invalid domain. It should like "hach.chat" or "hc.thz.cool", without "https://" or "http://".');
-                return;
+        <script>
+            const $id = (e) => {
+                return document.getElementById(e);
+            };
+
+            mdui.setColorScheme("#39c5bb");
+            async function fetchLastPush() {
+                try {
+                    let request = await fetch(
+                        "https://api.github.com/repos/Hiyoteam/HCPlus-Plugins/commits/main",
+                        { cache: "no-store" },
+                    );
+                    let json = await request.json();
+                    return json.commit;
+                } catch (e) {
+                    return null;
+                }
             }
-        }
-        var uninstall_url="https://"+distro+"/rescue-mode.html#remove-plugin?"+encodeURIComponent(document.location.protocol + '//' + document.location.host + '/plugins/' + document.location.hash.slice(1) + '/index.js');
-        mdui.dialog({
-            title: 'Click to uninstall',
-            content: `<div class="mdui-typo">Click <a href="${uninstall_url}" target="_blank">here</a> to uninstall the plugin.<br>If you sees a 404 error, please make sure you are using the latest version of HC++ with rescue mode.</div>`,
-        })
-    }
-        function processPluginDetails(e){
-            getText(e).then(function(json){
-                document.getElementById("plugins-progress").style.display="none"
-                let details=JSON.parse(json)
-                // Create the main container div
-                const mainDiv = document.createElement('div');
-                mainDiv.classList.add('mdui-typo', 'mdui-p-l-2');
+            async function showCommitInfo() {
+                let commit = await fetchLastPush();
+                if (commit != null) {
+                    return `${commit.tree.sha.slice(0, 8)} · ${commit.message}`;
+                } else {
+                    return "Failed to fetch commit message";
+                }
+            }
+            showCommitInfo().then(function (commit) {
+                document.querySelector(".commit-message").parentElement.hide =
+                    false;
+                document.querySelector(".commit-message").innerText =
+                    commit.replaceAll("\n", " ");
+            });
 
-                // Create the heading element
-                const heading = document.createElement('h1');
-                heading.textContent = details.name;
+            function getPluginId() {
+                const url = document.location.hash;
+                return url.replaceAll("#", "");
+            }
 
-                // Create the first paragraph element
-                const descriptionParagraph = document.createElement('p');
-                descriptionParagraph.textContent = details.description;
+            function initLoadingContainer(plugin_id) {
+                $id("pluginId").innerText = plugin_id;
+            }
 
-                // Create the second paragraph element
-                const authorParagraph = document.createElement('p');
-                authorParagraph.textContent = 'By '+details.author;
+            function hideLoadingContainer() {
+                $id("loadingContainer").style.display = "none";
+            }
 
-                // Create the line break element
-                const lineBreak = document.createElement('br');
+            function copyCommandFactory(command) {
+                return () => {
+                    navigator.clipboard.writeText(command);
+                    mdui.snackbar({
+                        message: "Command copied!",
+                    });
+                };
+            }
 
-                // Create the horizontal rule element
-                const hr = document.createElement('hr');
+            async function fetchAndRenderDetails(plugin_id) {
+                let metadata = await (
+                    await fetch(`/plugins/${plugin_id}/plugin.json`)
+                ).json();
+                $id("pluginMetadataIcon").setAttribute(
+                    "name",
+                    metadata.material_icon ?? "extension",
+                );
+                $id("pluginMetadataTitle").innerText = metadata.name;
+                $id("pluginMetadataDescription").innerText =
+                    metadata.description;
+                $id("pluginMetadataNameInstall").innerText = plugin_id;
+                $id("pluginMetadataNameUninstall").innerText = plugin_id;
+                $id("pluginMetadataButtonInstall").onclick = copyCommandFactory(
+                    `/addplugin https://plugins.hach.chat/plugins/${plugin_id}/index.js`,
+                );
+                $id("pluginMetadataButtonUninstall").onclick =
+                    copyCommandFactory(
+                        `/removeplugin https://plugins.hach.chat/plugins/${plugin_id}/index.js`,
+                    );
+                $id("pluginMetadataAuthor").innerText = metadata.author;
+                $id("pluginMetadataContact").innerText = metadata.contact;
+                hideLoadingContainer();
+                $id("pluginMetadata").style.display = "block";
+            }
 
-                // Append the heading, paragraphs, line break, and horizontal rule to the main div
-                mainDiv.appendChild(heading);
-                mainDiv.appendChild(descriptionParagraph);
-                mainDiv.appendChild(authorParagraph);
-                mainDiv.appendChild(lineBreak);
-                mainDiv.appendChild(hr);
+            async function renderPage() {
+                const plugin_id = getPluginId();
+                if (!plugin_id) {
+                    hideLoadingContainer();
+                    mdui.alert({
+                        headline: "Invaild plugin ID",
+                        description: "The plugin ID in the URL isn't vaild.",
+                        confirmText: "Return to plugin list",
+                        onConfirm: (e) => {
+                            document.location.href = "/plugins.html";
+                        },
+                    });
+                }
+                initLoadingContainer(plugin_id);
+                try {
+                    await fetchAndRenderDetails(plugin_id);
+                } catch (e) {
+                    hideLoadingContainer();
+                    mdui.alert({
+                        headline: "Failed to fetch plugin details",
+                        description:
+                            "An error occurred while loading the metadata of this plugin. Please try again later, check spelling mistakes in the URL or check your internet connection.",
+                        confirmText: "Return to plugin list",
+                        onConfirm: (e) => {
+                            document.location.href = "/plugins.html";
+                        },
+                    });
+                }
+            }
 
-                // Create the second container div
-                const secondDiv = document.createElement('div');
-                secondDiv.classList.add('mdui-p-a-2', 'mdui-typo');
-
-                // Create the "Would you like to install this plugin?" heading
-                const installHeading = document.createElement('h3');
-                installHeading.textContent = 'Would you like to install this plugin?';
-
-                // Create the button for copying the installation command
-                const installButton = document.createElement('button');
-                installButton.textContent = 'Copy installation command';
-                installButton.classList.add('mdui-btn', 'mdui-btn-raised', 'mdui-ripple', 'mdui-color-theme-accent', 'mdui-p-l-2');
-                installButton.onclick = generateCommand;
-
-                // Create the "Not happy with it? Uninstall then." heading
-                const uninstallHeading = document.createElement('h3');
-                uninstallHeading.textContent = 'Not happy with it? Uninstall then.';
-
-                // Create the select element for choosing a distro
-                const selectElement = document.createElement('select');
-                selectElement.classList.add('mdui-select','mdui-p-l-2');
-                selectElement.onchange = updateDistroField;
-
-                // Create the options for the select element
-                const distroOptions = [
-                { value: 'none', label: '--Choose a distro--', disabled: true, selected: true },
-                { value: 'hach.chat', label: 'hach.chat' },
-                { value: 's1.hach.chat', label: 's1.hach.chat' },
-                { value: 'hc.thz.cool', label: 'hc.thz.cool' },
-                { value: 'hcer.netlify.app', label: 'hcer.netlify.app' },
-                { value: 'custom', label: 'Other' }
-                ];
-
-                // Create and append the option elements to the select element
-                distroOptions.forEach(option => {
-                const optionElement = document.createElement('option');
-                optionElement.value = option.value;
-                optionElement.textContent = option.label;
-                if (option.disabled) optionElement.disabled = true;
-                if (option.selected) optionElement.selected = true;
-                selectElement.appendChild(optionElement);
-                });
-
-                // Create the custom domain text field
-                const customDomainTextField = document.createElement('div');
-                customDomainTextField.classList.add('mdui-textfield', 'mdui-textfield-floating-label', 'mdui-p-l-2');
-                customDomainTextField.id = 'custom-domain';
-                customDomainTextField.style.display = 'none';
-
-                // Create the label for the text field
-                const customDomainLabel = document.createElement('label');
-                customDomainLabel.classList.add('mdui-textfield-label');
-                customDomainLabel.textContent = 'Your distro domain';
-
-                // Create the input for the text field
-                const customDomainInput = document.createElement('input');
-                customDomainInput.classList.add('mdui-textfield-input');
-
-                // Append the label and input to the custom domain text field
-                customDomainTextField.appendChild(customDomainLabel);
-                customDomainTextField.appendChild(customDomainInput);
-                
-                // Create a blank
-                const blankElem = document.createElement("span");
-                blankElem.innerText="   "
-
-                // Create the button for uninstalling
-                const uninstallButton = document.createElement('button');
-                uninstallButton.textContent = 'Uninstall';
-                uninstallButton.classList.add('mdui-btn', 'mdui-btn-raised', 'mdui-ripple', 'mdui-color-theme-accent', 'mdui-m-r-2');
-                uninstallButton.onclick = generateUninstall;
-
-                // Append the heading, select element, custom domain text field, and uninstall button to the second div
-                secondDiv.appendChild(installHeading);
-                secondDiv.appendChild(installButton);
-                secondDiv.appendChild(uninstallHeading);
-                secondDiv.appendChild(selectElement);
-                secondDiv.appendChild(customDomainTextField);
-                secondDiv.appendChild(blankElem);
-                secondDiv.appendChild(uninstallButton);
-
-                // Append the main div and second div to the document body
-                document.body.appendChild(mainDiv);
-                document.body.appendChild(secondDiv);
-            })
-        }
-        function fetchPluginDetails(name){
-            fetch(`/plugins/${name}/plugin.json`, {cache: "no-store"}).then(processPluginDetails)
-            .catch(console.warn)
-        }
-        function processPlugins(e){
-            getText(e).then(function(json){
-                let plugins=JSON.parse(json)
-                plugins.plugins.forEach(element => {
-                    // fetch plugin details
-                    fetchPluginDetails(element)
-                });
-                document.getElementById("plugins-progress").style.display="none"
-            })
-        }
-        function fetchPlugins(){
-            fetch("/plugins/plugins.json", {cache: "no-store"})
-                .then(processPlugins)
-                .catch(console.warn)
-        }
-        function getDetails(){
-            let plugin_id=document.location.hash.slice(1)
-            fetchPluginDetails(plugin_id)
-        }
-        getDetails()
-    </script>
-  </body>
+            renderPage();
+        </script>
+    </body>
 </html>
