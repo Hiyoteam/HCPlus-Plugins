@@ -126,7 +126,7 @@
             async function fillPluginDetails(id) {
                 try {
                     var metadata = await (
-                        await fetch(`/plugins/${id}/metadata.json`)
+                        await fetch(`/plugins/${id}/metadata.json`, { cache: "no-store" })
                     ).json();
                     document.getElementById(
                         `pluginDetailTitle-${id}`,
@@ -155,7 +155,7 @@
             async function loadIndexAndRender() {
                 try {
                     var index = await (
-                        await fetch("/plugins/index.json")
+                        await fetch("/plugins/index.json", { cache: "no-store" })
                     ).json();
                     for (let plugin of index.plugins) {
                         let list_item = await renderPlugin(
