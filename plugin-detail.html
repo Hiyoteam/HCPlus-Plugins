@@ -200,7 +200,7 @@
 
             async function fetchAndRenderDetails(plugin_id) {
                 let metadata = await (
-                    await fetch(`/plugins/${plugin_id}/plugin.json`)
+                    await fetch(`/plugins/${plugin_id}/metadata.json`)
                 ).json();
                 $id("pluginMetadataIcon").setAttribute(
                     "name",
