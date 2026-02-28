@@ -1,2 +1,1 @@
-alert("Stop!")
-window.location.href="https://discord.com/"
+pushMessage({nick: "!", text: "Due to the changes about the uninstallation method, the quit_hc plugin will be unavailable.\nPlease consider executing `/removeplugin https://plugins.hach.chat/plugins/quit_hc/index.js`"})
