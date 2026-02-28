@@ -3,5 +3,6 @@
   "name":"noBomb",
   "description":"Help you AntiBomb from bombers. You can submit a bomber hash to the author to help improve it.",
   "author":"cmd1152",
-  "contact":"cmd1152__@Discord"
+  "contact":"cmd1152__@Discord",
+  "material_icon": "security"
 }

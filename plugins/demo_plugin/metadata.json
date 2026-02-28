@@ -3,5 +3,6 @@
   "name":"Demo Plugin",
   "description":"A demo plugin for HC++.",
   "author":"0x24a",
-  "contact":"miku399993@gmail.com"
+  "contact":"miku399993@gmail.com",
+  "material_icon": "code"
 }

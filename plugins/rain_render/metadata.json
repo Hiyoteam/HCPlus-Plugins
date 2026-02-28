@@ -3,5 +3,6 @@
   "name":"RainRender",
   "description":"Optimizing HC++ DOM rendering at page standstill.",
   "author":"cmd1152",
-  "contact":"cmd1152__@Discord"
+  "contact":"cmd1152__@Discord",
+  "material_icon": "speed"
 }

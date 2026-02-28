@@ -3,6 +3,7 @@
     "name":"Netease Music Loader",
     "description":"Render Netease Music URL into an iframe.",
     "author":"0x24a",
-    "contact":"miku399993@gmail.com"
+    "contact":"miku399993@gmail.com",
+    "material_icon": "music_note"
   }
   

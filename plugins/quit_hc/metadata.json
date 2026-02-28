@@ -3,6 +3,7 @@
     "name":"Quit Hack.Chat",
     "description":"Stop using hack.chat😓",
     "author":"0x24a",
-    "contact":"miku399993@gmail.com"
+    "contact":"miku399993@gmail.com",
+    "material_icon": "exit_to_app"
   }
   

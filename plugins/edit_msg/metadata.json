@@ -3,5 +3,6 @@
   "name":"editMsg",
   "description":"Using updateMessage to edit messages is discouraged by mods. It's not recommended. For assistance, please refer to '/editmsg help'.",
   "author":"cmd1152",
-  "contact":"cmd1152__@Discord"
+  "contact":"cmd1152__@Discord",
+  "material_icon": "edit_note"
 }

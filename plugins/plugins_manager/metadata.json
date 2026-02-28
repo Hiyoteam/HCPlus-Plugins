@@ -3,5 +3,6 @@
   "name":"pluginsManager",
   "description":"GUI page management plugins",
   "author":"cmd1152",
-  "contact":"cmd1152__@Discord"
+  "contact":"cmd1152__@Discord",
+  "material_icon": "settings_input_component"
 }

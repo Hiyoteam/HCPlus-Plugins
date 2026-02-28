@@ -3,6 +3,7 @@
     "name":"IM Theme",
     "description":"IM theme plugin for hc++.\nFeatures: beautify buttons, beautify input boxes, beautify checkboxes in sidebar. \nPerfect support for updateMessage and multilanguage (i18n).",
     "author":"Dr0",
-    "contact":"admin@dr0.lol"
+    "contact":"admin@dr0.lol",
+    "material_icon": "style"
   }
   

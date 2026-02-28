@@ -3,5 +3,6 @@
   "name":"CatBoxy",
   "description":"Quickly upload anything to catbox.moe via HC++ Camo, and probaly same with the last guy that made a catbox.moe plugin.",
   "author":"0x24a",
-  "contact":"miku399993@gmail.com"
+  "contact":"miku399993@gmail.com",
+  "material_icon": "cloud_upload"
 }

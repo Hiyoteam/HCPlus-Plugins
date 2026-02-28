@@ -3,6 +3,7 @@
     "name":"RegexBan",
     "description":"Not showing the content that matches the regex!",
     "author":"0x24a",
-    "contact":"miku399993@gmail.com"
+    "contact":"miku399993@gmail.com",
+    "material_icon": "filter_alt"
   }
   
